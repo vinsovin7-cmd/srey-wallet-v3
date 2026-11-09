@@ -15,6 +15,17 @@ function collectProjectFiles(dir: string, base: string = ''): string[] {
     if (['node_modules', '.git', 'dist', 'dist-ssr', '.aistudio', '.turbo', 'coverage'].includes(entry.name)) {
       continue;
     }
+    // Block environment secrets and credential files (prevents GitHub Secret Scanning push rejection)
+    if (
+      entry.name === '.env' ||
+      entry.name === '.env.local' ||
+      (entry.name.startsWith('.env.') && !entry.name.endsWith('.example')) ||
+      entry.name === 'firebase-applet-config.json' ||
+      entry.name.endsWith('.key') ||
+      entry.name.endsWith('.pem')
+    ) {
+      continue;
+    }
     const rel = base ? `${base}/${entry.name}` : entry.name;
     const full = path.join(dir, entry.name);
 
@@ -168,7 +179,19 @@ githubSyncRouter.post('/push-batch', async (req, res) => {
     }
 
     try {
-      const buffer = fs.readFileSync(fullPath);
+      let buffer = fs.readFileSync(fullPath);
+      // Automatic Secret Sanitizer: Scrubs raw API tokens to prevent GitHub Secret Scanning blocks
+      const ext = path.extname(relPath).toLowerCase();
+      if (['.ts', '.tsx', '.js', '.jsx', '.json', '.md', '.html', '.txt', '.example', '.yml', '.yaml'].includes(ext) || !ext) {
+        let text = buffer.toString('utf8');
+        text = text
+          .replace(/sk-or-v1-[a-f0-9]{64}/g, 'sk-or-v1-YOUR_OPENROUTER_API_KEY_HERE')
+          .replace(/AIza[0-9A-Za-z-_]{35}/g, 'AIzaSy_YOUR_FIREBASE_API_KEY_HERE')
+          .replace(/Nb7qtkt4u9aLp35CKe_8pzCLV6337nPFTQr6hsRTiSXWgkNOJ1/g, 'your_x_client_secret_here')
+          .replace(/AGNMQ4KUUOK6SXYAAAAJJV6LH72E3JRIOMPOTS3IBM73SXVKHT4UG2CVO3SEVUXUGUHLIZI/g, 'your_toncenter_api_key_here');
+        buffer = Buffer.from(text, 'utf8');
+      }
+
       const base64Content = buffer.toString('base64');
 
       // Check if file already exists on GitHub to obtain its current SHA
