@@ -58,3 +58,13 @@ tests/
 Anchor.toml
 Cargo.toml
 
+# Environment & Credentials (CRITICAL: prevents GitHub Secret Scanning violations)
+.env
+.env.local
+.env.*.local
+*.env
+firebase-applet-config.json
+*.pem
+*.key
+
+
