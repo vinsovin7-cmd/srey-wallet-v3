@@ -1,0 +1,60 @@
+# Dependencies and Builds
+node_modules/
+dist/
+dist-ssr/
+*.local
+ms-playwright/
+.turbo/
+coverage/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor directories and system files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Chat screenshots and uploaded images (CRITICAL: prevents GitHub Trees API payload limit error)
+public/assets/aistudio/
+public/assets/aistudio/**
+public/assets/aistudio/*
+*.png
+*.jpg
+*.jpeg
+*.webp
+!public/icon.png
+!public/favicon.svg
+!public/cinema-preview.svg
+!public/tonconnect-manifest-icon.png
+
+# State files & local caches
+*.state.json
+blockchain_listener_state.json
+onekey_wallet_state.json
+.aistudio/
+.aistudio/**
+*.apk
+bun.lock
+
+# Standalone subprojects and non-web modules
+standalone-srey-wallet/
+miniapp/
+programs/
+contracts/
+migrations/
+tests/
+Anchor.toml
+Cargo.toml
+
