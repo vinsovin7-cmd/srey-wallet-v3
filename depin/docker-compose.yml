@@ -1,0 +1,178 @@
+version: '3.8'
+
+# ==============================================================================
+# CYBERNODE DePIN & AI EDGE COMPUTE ORCHESTRATION STACK
+# Target Passive Revenue: $10.00 – $15.00 / day ($300 – $450 / month)
+# Resource Architecture: Strict Memory Bounds, Low-Priority CPU Affinity, Non-KYC
+# ==============================================================================
+
+services:
+  # ----------------------------------------------------------------------------
+  # 1. BANDWIDTH DePIN LAYER: Grass Edge Daemon (Solana Settlement)
+  # ----------------------------------------------------------------------------
+  grass-node:
+    image: mrcolorrain/grass:latest
+    container_name: cybernode-grass
+    restart: unless-stopped
+    environment:
+      - GRASS_USER=${GRASS_USER:-user@example.com}
+      - GRASS_PASS=${GRASS_PASS:-secure_password}
+      - NETWORK_TYPE=residential
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 256M
+        reservations:
+          cpus: '0.05'
+          memory: 64M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks:
+      - depin-net
+
+  # ----------------------------------------------------------------------------
+  # 2. BANDWIDTH DePIN LAYER: Honeygain Headless Client (JMPT / Non-KYC)
+  # ----------------------------------------------------------------------------
+  honeygain-node:
+    image: honeygain/honeygain:latest
+    container_name: cybernode-honeygain
+    restart: unless-stopped
+    command: -tou-accept -email ${HONEYGAIN_EMAIL:-user@example.com} -pass ${HONEYGAIN_PASS:-secure_password} -device cybernode-rig-01
+    deploy:
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 256M
+        reservations:
+          cpus: '0.05'
+          memory: 64M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks:
+      - depin-net
+
+  # ----------------------------------------------------------------------------
+  # 3. BANDWIDTH DePIN LAYER: EarnApp Headless Client (Direct Balance)
+  # ----------------------------------------------------------------------------
+  earnapp-node:
+    image: fazalfarhan01/earnapp:latest
+    container_name: cybernode-earnapp
+    restart: unless-stopped
+    environment:
+      - EARNAPP_UUID=${EARNAPP_UUID:-sdk-node-cybernode-01}
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
+          memory: 192M
+        reservations:
+          cpus: '0.05'
+          memory: 48M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks:
+      - depin-net
+
+  # ----------------------------------------------------------------------------
+  # 4. EDGE ROUTING DePIN LAYER: GaGaNode Client (Meson Network / Edge IP)
+  # ----------------------------------------------------------------------------
+  gaganode:
+    image: mesonnetwork/gaganode:latest
+    container_name: cybernode-gaganode
+    restart: unless-stopped
+    environment:
+      - TOKEN=${GAGANODE_TOKEN:-your_gaganode_token}
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 256M
+        reservations:
+          cpus: '0.05'
+          memory: 64M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks:
+      - depin-net
+
+  # ----------------------------------------------------------------------------
+  # 5. AI INFERENCE & WEB SCRAPING: NodePay / Oasis AI Light Worker
+  # ----------------------------------------------------------------------------
+  nodepay-worker:
+    image: python:3.11-slim
+    container_name: cybernode-nodepay
+    restart: unless-stopped
+    working_dir: /app
+    volumes:
+      - ./scripts:/app/scripts:ro
+    command: >
+      bash -c "pip install --no-cache-dir requests websocket-client urllib3 &&
+               python /app/scripts/nodepay_daemon.py"
+    environment:
+      - NODEPAY_TOKEN=${NODEPAY_TOKEN:-your_nodepay_token}
+      - OASIS_NODE_ID=${OASIS_NODE_ID:-your_oasis_id}
+      - TARGET_CHAIN=EVM_BASE
+    deploy:
+      resources:
+        limits:
+          cpus: '0.35'
+          memory: 384M
+        reservations:
+          cpus: '0.05'
+          memory: 96M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks:
+      - depin-net
+
+  # ----------------------------------------------------------------------------
+  # 6. FAILOVER & HEALTH TELEMETRY SENTINEL (Auto-Restarter & Ping Sentinel)
+  # ----------------------------------------------------------------------------
+  depin-sentinel:
+    image: python:3.11-slim
+    container_name: cybernode-sentinel
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./depin_sentinel.py:/app/depin_sentinel.py:ro
+      - ./logs:/app/logs
+    working_dir: /app
+    command: >
+      bash -c "pip install --no-cache-dir requests docker &&
+               python /app/depin_sentinel.py --docker-mode"
+    environment:
+      - CHECK_INTERVAL_SECONDS=900
+      - TELEGRAM_BOT_TOKEN=${SENTINEL_TG_BOT_TOKEN:-}
+      - TELEGRAM_CHAT_ID=${SENTINEL_TG_CHAT_ID:-}
+    deploy:
+      resources:
+        limits:
+          cpus: '0.10'
+          memory: 128M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "2"
+    networks:
+      - depin-net
+
+networks:
+  depin-net:
+    driver: bridge
