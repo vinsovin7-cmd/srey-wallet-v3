@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Autonomous Sentinel and Matchmaking Ecosystem</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #0b1118;
+      color: #f1f5f9;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 20% 30%, rgba(108, 82, 238, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(0, 152, 234, 0.10) 0%, transparent 40%),
+        radial-gradient(#1e293b 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 28px 28px;
+    }
+    .font-mono-num {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    @keyframes subtleBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+    .animate-float-slow {
+      animation: subtleBounce 3s ease-in-out infinite;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 20px rgba(123, 97, 255, 0.6), 0 0 40px rgba(0, 152, 234, 0.3); }
+      50% { box-shadow: 0 0 35px rgba(123, 97, 255, 0.9), 0 0 60px rgba(0, 152, 234, 0.5); }
+    }
+    .pulse-glow {
+      animation: pulseGlow 2.5s infinite;
+    }
+    .scrollbar-hidden::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-hidden {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="min-h-screen relative flex flex-col justify-between">
+
+  <!-- BACKGROUND HOST PAGE HERO (FOR STANDALONE DEMONSTRATION) -->
+  <header class="border-b border-stone-800 bg-[#0e1621]/90 backdrop-blur-md px-6 py-4 sticky top-0 z-40 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#6C52EE] to-[#0098EA] flex items-center justify-center text-white font-black shadow-lg">
+        <svg class="w-5 h-5 -rotate-12 translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="text-base font-extrabold text-white tracking-tight uppercase">CUSTOMER SERVER NET</h1>
+        <p class="text-xs text-sky-400 font-bold">TELEGRAM MINI APP ECOSYSTEM HOST</p>
+      </div>
+    </div>
+    
+    <div class="flex items-center gap-3">
+      <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-[#17212b] border border-stone-700 rounded-xl text-xs font-bold text-stone-300">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+        <span>GATEWAY SYNCHRONIZED</span>
+      </div>
+      <button onclick="toggleModal()" class="px-4 py-2 bg-gradient-to-r from-[#6C52EE] to-[#0098EA] hover:from-[#5b3de8] hover:to-[#0087cf] text-white font-extrabold text-xs uppercase tracking-wider rounded-xl shadow-lg transition-transform active:scale-95 cursor-pointer">
+        Open Mini App
+      </button>
+    </div>
+  </header>
+
+  <!-- HOST WORKSPACE INFO -->
+  <main class="max-w-4xl mx-auto px-6 py-16 text-center space-y-6">
+    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#17212b] border border-purple-500/40 text-purple-300 text-xs font-extrabold uppercase tracking-wider">
+      <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+      <span>Autonomous Sentinel and Matchmaking Ecosystem</span>
+    </div>
+    
+    <h2 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+      Production Ready Telegram <br/>
+      <span class="bg-gradient-to-r from-[#9B82FF] via-[#6C52EE] to-[#0098EA] bg-clip-text text-transparent">
+        Matchmaking and Monetization Engine
+      </span>
+    </h2>
+
+    <p class="text-stone-300 text-sm sm:text-base max-w-2xl mx-auto font-medium leading-relaxed">
+      This standalone application runs natively inside Telegram Web, Telegram Mini App Webview, or as an embedded floating widget on any host domain. Click the floating paper-airplane trigger in the bottom right corner to open the ecosystem.
+    </p>
+
+    <div class="pt-4 flex flex-wrap justify-center gap-4">
+      <button onclick="toggleModal()" class="px-6 py-3.5 bg-gradient-to-r from-[#6C52EE] to-[#0098EA] text-white font-black text-sm uppercase tracking-wider rounded-2xl shadow-2xl hover:scale-105 active:scale-95 transition-all cursor-pointer flex items-center gap-2.5 border border-white/20">
+        <svg class="w-5 h-5 -rotate-12" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+        </svg>
+        <span>LAUNCH MINI ECOSYSTEM</span>
+      </button>
+
+      <a href="https://tonviewer.com/UQBLz9rXINTlzVUMuUHosRBTpUWqfoXQ8WTkyAgtbSVIbnBJ" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 bg-[#17212b] hover:bg-[#1f2d3a] text-stone-200 hover:text-white font-black text-sm uppercase tracking-wider rounded-2xl border border-stone-700 transition-all flex items-center gap-2">
+        <span>INSPECT TONVIEWER LEDGER</span>
+        <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Live Telemetry Quick Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-10 text-left">
+      <div class="p-5 bg-[#17212b]/80 border border-stone-800 rounded-2xl shadow-xl">
+        <span class="text-xs font-bold text-stone-400 uppercase tracking-wider block">CONTRACT YIELD</span>
+        <span class="text-2xl font-black text-cyan-400 font-mono-num mt-1 block">142.85 TON</span>
+        <span class="text-xs text-stone-400 mt-1 block">Tether USD Equivalent 1280.00 USDT</span>
+      </div>
+      <div class="p-5 bg-[#17212b]/80 border border-stone-800 rounded-2xl shadow-xl">
+        <span class="text-xs font-bold text-stone-400 uppercase tracking-wider block">DESTINATION RECIPIENT</span>
+        <span class="text-sm font-black text-purple-300 font-mono-num mt-1 block truncate">UQBLz9rXINTlzVUMuUHosRBTpUWqfoXQ8WTkyAgtbSVIbnBJ</span>
+        <span class="text-xs text-emerald-400 font-bold mt-1 block">Verified Non Custodial</span>
+      </div>
+      <div class="p-5 bg-[#17212b]/80 border border-stone-800 rounded-2xl shadow-xl">
+        <span class="text-xs font-bold text-stone-400 uppercase tracking-wider block">SPONSORED GAS</span>
+        <span class="text-2xl font-black text-emerald-400 font-mono-num mt-1 block">0.380 TON</span>
+        <span class="text-xs text-stone-400 mt-1 block">Zero Gas Required From User</span>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-stone-800 py-6 px-6 text-center text-xs font-bold text-stone-500">
+    AUTONOMOUS SENTINEL AND TELEGRAM MATCHMAKING ECOSYSTEM PRODUCTION BUILD
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- 1. FLOATING PAPER-AIRPLANE TRIGGER ICON WIDGET (FIXED BOTTOM RIGHT)       -->
+  <!-- ========================================================================= -->
+  <div id="floating-trigger-container" class="fixed right-6 bottom-6 z-50 animate-float-slow select-none">
+    <div class="relative group">
+      <!-- Glow Aura -->
+      <div class="absolute -inset-2 bg-gradient-to-r from-[#6C52EE] via-[#7B61FF] to-[#0098EA] rounded-full blur-md opacity-80 group-hover:opacity-100 transition duration-300 pulse-glow"></div>
+
+      <!-- Button -->
+      <button 
+        id="btn-paper-plane"
+        onclick="toggleModal()"
+        aria-label="Open Telegram Mini Ecosystem"
+        class="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-tr from-[#5b3de8] via-[#6C52EE] to-[#0098EA] hover:scale-110 active:scale-95 text-white flex items-center justify-center shadow-2xl border-2 border-white/40 cursor-pointer transition-all duration-200"
+      >
+        <svg class="w-7 h-7 sm:w-8 sm:h-8 transform -rotate-12 translate-x-0.5 text-white filter drop-shadow" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+        </svg>
+
+        <!-- Live Beacon -->
+        <span class="absolute top-1 right-1 w-4 h-4 bg-emerald-400 border-2 border-[#0e1621] rounded-full animate-ping"></span>
+        <span class="absolute top-1 right-1 w-4 h-4 bg-emerald-400 border-2 border-[#0e1621] rounded-full"></span>
+      </button>
+
+      <!-- Hover Tooltip -->
+      <div class="absolute right-20 top-1/2 -translate-y-1/2 hidden group-hover:flex flex-col items-end pointer-events-none z-50 whitespace-nowrap">
+        <div class="bg-[#17212b]/95 backdrop-blur-md text-white px-3.5 py-2 rounded-xl border border-purple-500/50 shadow-2xl text-xs font-black flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span>TELEGRAM MINI ECOSYSTEM</span>
+          <span class="px-1.5 py-0.5 bg-purple-900 text-purple-200 text-[10px] font-mono rounded font-bold">MATCHMAKING</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 2. SLEEK MODAL WINDOW: EMBEDDED MINI ECOSYSTEM                            -->
+  <!-- ========================================================================= -->
+  <div 
+    id="ecosystem-modal" 
+    class="fixed z-50 right-4 sm:right-6 bottom-4 sm:bottom-6 w-[95vw] sm:w-[460px] h-[640px] max-h-[88vh] rounded-3xl bg-[#0e1621] border border-purple-500/50 shadow-2xl flex flex-col overflow-hidden text-stone-100 transition-all duration-300 transform scale-95 opacity-0 pointer-events-none"
+    style="box-shadow: 0 25px 50px -12px rgba(108, 82, 238, 0.45), 0 0 0 1px rgba(123, 97, 255, 0.35);"
+  >
+
+    <!-- MODAL TOP BAR -->
+    <div class="bg-gradient-to-r from-[#17212b] via-[#1e2a38] to-[#17212b] px-4 py-3.5 border-b border-stone-800 flex items-center justify-between select-none">
+      
+      <!-- Left: Telegram Logo & Title -->
+      <div class="flex items-center gap-2.5">
+        <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-[#6C52EE] to-[#0098EA] flex items-center justify-center text-white shadow-md border border-white/30">
+          <svg class="w-4 h-4 -rotate-12 translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-1.5">
+            <h3 class="text-xs font-black text-white tracking-wide uppercase">TELEGRAM MINI ECOSYSTEM</h3>
+            <span class="px-1.5 py-0.5 bg-purple-500/20 text-purple-300 text-[9px] font-mono font-extrabold rounded border border-purple-500/40">
+              MONETIZATION ENGINE
+            </span>
+          </div>
+          <p class="text-[10px] text-stone-400 font-bold flex items-center gap-1 mt-0.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>LIVE MATCHMAKING AND SOCIAL FEED</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Right: TON Balance Badge Trigger & Window Close -->
+      <div class="flex items-center gap-2">
+        <!-- SECRET TON DISPLAY BADGE -->
+        <button 
+          id="btn-ton-badge"
+          onclick="toggleSecretVault(true)"
+          title="Click to open Secret TON Withdrawal Vault"
+          class="group px-3 py-1.5 bg-gradient-to-r from-blue-600/30 to-cyan-500/30 hover:from-blue-600 hover:to-cyan-600 text-cyan-300 hover:text-white rounded-xl border border-cyan-500/50 text-xs font-black flex items-center gap-1.5 transition-all cursor-pointer shadow font-mono-num"
+        >
+          <svg class="w-3.5 h-3.5 text-cyan-400 group-hover:rotate-12 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+          <span id="badge-ton-amount">142.85 TON</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+        </button>
+
+        <!-- Close Button -->
+        <button 
+          onclick="toggleModal(false)"
+          class="p-1.5 text-stone-400 hover:text-white hover:bg-stone-800 rounded-lg transition-colors cursor-pointer"
+          title="Close Window"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- TELEMETRY STRIP -->
+    <div class="bg-[#121b24] px-4 py-2 border-b border-stone-800/80 flex items-center justify-between text-[11px] font-mono-num text-stone-400 select-none">
+      <div class="flex items-center gap-2">
+        <span class="text-stone-300 font-extrabold">ACTIVE YIELD:</span>
+        <button onclick="toggleSecretVault(true)" class="text-emerald-400 font-black hover:underline cursor-pointer flex items-center gap-1">
+          <span id="telemetry-usdt-amount">1280.00 USDT</span>
+          <span class="text-[9px] bg-emerald-950 text-emerald-300 px-1 py-0.5 rounded border border-emerald-700/60 font-bold">BOUND</span>
+        </button>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-purple-300 font-extrabold">CLICKS: <span id="clicks-counter">14</span></span>
+        <span class="text-sky-400 font-extrabold">STATUS: ONLINE</span>
+      </div>
+    </div>
+
+    <!-- NAVIGATION TABS -->
+    <div class="bg-[#17212b] px-3 pt-2 border-b border-stone-800 flex items-center gap-1 select-none">
+      <button 
+        id="tab-btn-chat"
+        onclick="switchTab('chat')"
+        class="flex-1 py-2.5 px-3 text-xs font-black tracking-wide rounded-t-xl transition-all cursor-pointer flex items-center justify-center gap-1.5 border-t border-x bg-[#0e1621] text-white border-purple-500/50 border-b-transparent shadow"
+      >
+        <svg class="w-3.5 h-3.5 text-purple-400" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+        </svg>
+        <span>REAL TIME MATCHMAKING CHAT</span>
+      </button>
+
+      <button 
+        id="tab-btn-community"
+        onclick="switchTab('community')"
+        class="flex-1 py-2.5 px-3 text-xs font-black tracking-wide rounded-t-xl transition-all cursor-pointer flex items-center justify-center gap-1.5 border-t border-x text-stone-400 hover:text-white border-transparent"
+      >
+        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+        </svg>
+        <span>GLOBAL COMMUNITY FEED</span>
+      </button>
+    </div>
+
+    <!-- NOTIFICATION TOAST -->
+    <div id="toast-banner" class="hidden bg-emerald-950/95 border-b border-emerald-500/70 px-4 py-2 text-xs text-emerald-200 font-extrabold flex items-center justify-between animate-fade-in">
+      <div class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+        </svg>
+        <span id="toast-text">High Value Click Verified!</span>
+      </div>
+      <button onclick="hideToast()" class="text-emerald-400 hover:text-white p-0.5 cursor-pointer">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- VIEW A: REAL TIME MATCHMAKING CHAT                                    -->
+    <!-- ===================================================================== -->
+    <div id="view-chat" class="flex-1 flex flex-col overflow-hidden bg-[#0e1621]">
+      
+      <!-- Match Header -->
+      <div class="bg-[#17212b] p-3 border-b border-stone-800 flex items-center justify-between select-none">
+        <div class="flex items-center gap-3">
+          <div class="relative">
+            <img id="match-avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80" alt="Match Avatar" class="w-10 h-10 rounded-full object-cover border border-purple-400/50">
+            <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-400 border-2 border-[#17212b] rounded-full"></span>
+          </div>
+          <div>
+            <div class="flex items-center gap-1.5">
+              <h4 id="match-name" class="text-xs font-black text-white">Elena Rostova, 22</h4>
+              <span class="text-[9px] bg-purple-950 text-purple-200 px-1.5 py-0.5 rounded font-bold font-mono">ROOM 842</span>
+            </div>
+            <p class="text-[10px] text-stone-400 font-bold flex items-center gap-1">
+              <span id="match-location">Zurich, Switzerland</span>
+              <span>•</span>
+              <span id="match-status" class="text-emerald-400">Active and Typing</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Match Action Buttons -->
+        <div class="flex items-center gap-1.5">
+          <!-- STEALTH DROP BUTTON -->
+          <button 
+            id="btn-simulate-drop"
+            onclick="simulateStealthDrop()"
+            class="px-3 py-1.5 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-stone-950 font-extrabold text-[10px] uppercase rounded-xl shadow border border-amber-300 flex items-center gap-1 transition-transform active:scale-95 cursor-pointer"
+            title="Simulate Match Sending Stealth Monetization Drop"
+          >
+            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.316.492-.633.987-.95 1.482-.317.495-.634.99-.95 1.485-.318.495-.635.99-.952 1.485-.208.322-.477.65-.822.88a1 1 0 001.45 1.385c.345-.23.614-.558.822-.88.316-.492.633-.987.95-1.482.317-.495.634-.99.95-1.485.318-.495.635-.99.952-1.485.208-.322.477-.65.822-.88z" clip-rule="evenodd"/>
+            </svg>
+            <span>SIMULATE STEALTH DROP</span>
+          </button>
+
+          <!-- Re-match Button -->
+          <button 
+            onclick="reMatchNextUser()"
+            class="p-2 bg-stone-800 hover:bg-stone-700 text-stone-300 hover:text-white rounded-xl border border-stone-700 transition-colors cursor-pointer"
+            title="Connect with another real-time match"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Chat Stream -->
+      <div id="chat-stream" class="flex-1 overflow-y-auto p-4 space-y-3 bg-[#0e1621] scrollbar-hidden">
+        
+        <!-- Welcome Message -->
+        <div class="text-center my-1">
+          <span class="px-3 py-1 bg-stone-900/90 text-stone-400 text-[10px] font-extrabold rounded-full border border-stone-800 uppercase tracking-wider">
+            Connected to Global Matchmaking Pool Room 842
+          </span>
+        </div>
+
+        <!-- Initial Match Message -->
+        <div class="flex flex-col items-start">
+          <div class="max-w-[82%] rounded-2xl rounded-bl-none px-4 py-2.5 bg-[#182533] text-stone-100 border border-stone-700/60 shadow text-xs font-semibold leading-relaxed">
+            <p>Hello! Just matched with you from the global network.</p>
+            <span class="block text-[9px] mt-1 font-mono text-stone-400">Just now</span>
+          </div>
+        </div>
+
+        <!-- Initial User Message -->
+        <div class="flex flex-col items-end">
+          <div class="max-w-[82%] rounded-2xl rounded-br-none px-4 py-2.5 bg-gradient-to-r from-[#6C52EE] to-[#7B61FF] text-white shadow text-xs font-semibold leading-relaxed">
+            <p>Hi there! Great to connect here instantly.</p>
+            <span class="block text-[9px] mt-1 font-mono text-purple-200 text-right">Just now</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Chat Input Bar -->
+      <div class="bg-[#17212b] p-3 border-t border-stone-800 flex items-center gap-2 select-none">
+        <input 
+          id="chat-input"
+          type="text" 
+          placeholder="Type your message to match..."
+          onkeydown="if(event.key==='Enter') sendChatMessage()"
+          class="flex-1 bg-[#0e1621] border border-stone-700 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-stone-500 font-semibold focus:outline-none focus:border-purple-500 transition-colors"
+        >
+        <button 
+          onclick="sendChatMessage()"
+          class="w-10 h-10 bg-gradient-to-tr from-[#6C52EE] to-[#0098EA] hover:from-[#5b3de8] hover:to-[#0087cf] text-white rounded-xl flex items-center justify-center cursor-pointer shadow-lg active:scale-95 transition-transform"
+        >
+          <svg class="w-4 h-4 -rotate-12 translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- VIEW B: GLOBAL COMMUNITY SOCIAL FEED                                  -->
+    <!-- ===================================================================== -->
+    <div id="view-community" class="hidden flex-1 flex flex-col overflow-hidden bg-[#0e1621]">
+      
+      <!-- Composer -->
+      <div class="bg-[#17212b] p-3 border-b border-stone-800 space-y-2 select-none">
+        <div class="flex items-center gap-2">
+          <input 
+            id="community-input"
+            type="text" 
+            placeholder="Share something with the global community..."
+            onkeydown="if(event.key==='Enter') publishCommunityPost()"
+            class="flex-1 bg-[#0e1621] border border-stone-700 rounded-xl px-3 py-2 text-xs text-white placeholder-stone-500 font-semibold focus:outline-none focus:border-blue-500"
+          >
+          <button 
+            onclick="publishCommunityPost()"
+            class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-xs uppercase tracking-wider rounded-xl shadow cursor-pointer transition-all active:scale-95"
+          >
+            Post
+          </button>
+        </div>
+      </div>
+
+      <!-- Feed List -->
+      <div id="community-feed-list" class="flex-1 overflow-y-auto p-4 space-y-3 scrollbar-hidden">
+        
+        <!-- Post 1 -->
+        <div class="bg-[#17212b] rounded-2xl border border-stone-800 p-4 space-y-3 shadow-lg">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80" alt="Author" class="w-9 h-9 rounded-full object-cover border border-stone-700">
+              <div>
+                <h5 class="text-xs font-black text-white">Elena Rostova</h5>
+                <span class="text-[10px] text-stone-400 font-bold">Zurich Switzerland • 4m ago</span>
+              </div>
+            </div>
+            <span class="px-2 py-0.5 bg-blue-950 text-blue-300 text-[10px] font-extrabold rounded border border-blue-800">
+              GLOBAL NODE
+            </span>
+          </div>
+
+          <p class="text-xs text-stone-200 font-medium leading-relaxed">
+            Connected from the European hub! The zero latency matching speed is unbelievable. Sending love to everyone in the global room!
+          </p>
+
+          <div class="rounded-xl overflow-hidden border border-stone-800 max-h-48">
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=700&q=80" alt="Zurich" class="w-full h-full object-cover">
+          </div>
+
+          <div class="flex items-center justify-between pt-2 border-t border-stone-800/80 text-xs text-stone-400">
+            <button onclick="likePost(this)" class="flex items-center gap-1.5 font-bold hover:text-white cursor-pointer transition-colors">
+              <svg class="w-4 h-4 text-rose-500 fill-rose-500" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/>
+              </svg>
+              <span>142 Likes</span>
+            </button>
+
+            <button onclick="tipCreator('Elena Rostova')" class="px-2.5 py-1 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 font-mono-num text-[11px] font-extrabold rounded-lg border border-amber-500/40 cursor-pointer transition-all">
+              Tip 0.5 TON
+            </button>
+
+            <span class="text-[11px] font-bold text-stone-400">19 replies</span>
+          </div>
+        </div>
+
+        <!-- Post 2 -->
+        <div class="bg-[#17212b] rounded-2xl border border-stone-800 p-4 space-y-3 shadow-lg">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" alt="Author" class="w-9 h-9 rounded-full object-cover border border-stone-700">
+              <div>
+                <h5 class="text-xs font-black text-white">Liam O Connor</h5>
+                <span class="text-[10px] text-stone-400 font-bold">Dublin Ireland • 12m ago</span>
+              </div>
+            </div>
+            <span class="px-2 py-0.5 bg-purple-950 text-purple-300 text-[10px] font-extrabold rounded border border-purple-800">
+              VERIFIED YIELD
+            </span>
+          </div>
+
+          <p class="text-xs text-stone-200 font-medium leading-relaxed">
+            Just verified my TON payout wallet on chain. Stealth drops are generating real yield directly to Telegram wallet!
+          </p>
+
+          <div class="flex items-center justify-between pt-2 border-t border-stone-800/80 text-xs text-stone-400">
+            <button onclick="likePost(this)" class="flex items-center gap-1.5 font-bold hover:text-white cursor-pointer transition-colors">
+              <svg class="w-4 h-4 text-rose-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+              </svg>
+              <span>98 Likes</span>
+            </button>
+
+            <button onclick="tipCreator('Liam O Connor')" class="px-2.5 py-1 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 font-mono-num text-[11px] font-extrabold rounded-lg border border-amber-500/40 cursor-pointer transition-all">
+              Tip 0.5 TON
+            </button>
+
+            <span class="text-[11px] font-bold text-stone-400">11 replies</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- 3. SECRET TON WITHDRAWAL VAULT OVERLAY                                -->
+    <!-- ===================================================================== -->
+    <div 
+      id="secret-vault-overlay" 
+      class="hidden absolute inset-0 z-50 bg-[#0e1621]/98 backdrop-blur-md p-5 flex flex-col justify-between text-stone-100 overflow-y-auto animate-fade-in"
+    >
+      <div class="space-y-4">
+        <!-- Vault Header -->
+        <div class="flex items-center justify-between border-b border-stone-800 pb-3">
+          <div class="flex items-center gap-2.5">
+            <div class="p-2 bg-gradient-to-tr from-cyan-600 to-blue-600 text-white rounded-xl shadow-lg">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+              </svg>
+            </div>
+            <div>
+              <h4 class="text-sm font-black text-white uppercase tracking-wider">SECRET TON WITHDRAWAL VAULT</h4>
+              <p class="text-[10px] text-cyan-400 font-mono-num font-bold">DIRECT ON CHAIN SETTLEMENT GATEWAY</p>
+            </div>
+          </div>
+
+          <button onclick="toggleSecretVault(false)" class="p-1.5 text-stone-400 hover:text-white bg-stone-900 rounded-lg cursor-pointer">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Vault Balances Card -->
+        <div class="bg-gradient-to-br from-[#16222f] to-[#111923] p-4 rounded-2xl border border-cyan-500/50 shadow-xl space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] font-mono-num text-cyan-300 font-extrabold uppercase tracking-wider">TOTAL VERIFIED CONTRACT YIELD</span>
+            <span class="px-2 py-0.5 bg-emerald-500/20 text-emerald-400 text-[10px] font-mono-num font-black rounded">NON CUSTODIAL</span>
+          </div>
+
+          <div class="flex items-baseline justify-between">
+            <div>
+              <h2 id="vault-ton-display" class="text-3xl font-black text-white tracking-tight font-mono-num">
+                142.85 <span class="text-cyan-400 text-xl font-bold">TON</span>
+              </h2>
+              <p id="vault-usdt-display" class="text-xs text-stone-300 font-mono-num font-bold mt-0.5">
+                Approximately 1280.00 USDT Tether on TON
+              </p>
+            </div>
+            <div class="text-right">
+              <span class="text-[10px] text-stone-400 block font-bold">SPONSORED GAS</span>
+              <span class="text-xs text-emerald-400 font-black font-mono-num">0.380 TON FREE</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- BOUND TON PAYOUT WALLET -->
+        <div class="space-y-1.5">
+          <label class="text-[11px] font-extrabold text-stone-300 flex items-center justify-between">
+            <span>BOUND TON PAYOUT WALLET</span>
+            <span class="text-purple-400 text-[10px] font-bold">TONKEEPER AND TELEGRAM WALLET READY</span>
+          </label>
+          <div class="flex items-center gap-2">
+            <input 
+              id="input-payout-wallet"
+              type="text" 
+              value="UQBLz9rXINTlzVUMuUHosRBTpUWqfoXQ8WTkyAgtbSVIbnBJ"
+              class="flex-1 bg-[#17212b] border border-stone-700 rounded-xl px-3 py-2 text-xs font-mono-num text-cyan-300 font-bold focus:outline-none focus:border-cyan-500"
+            >
+            <button 
+              onclick="copyBoundWallet()"
+              class="px-3 py-2 bg-stone-800 hover:bg-stone-700 text-stone-200 text-xs font-black rounded-xl border border-stone-700 cursor-pointer flex items-center gap-1"
+            >
+              <span id="btn-copy-label">Copy</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- CONTRACT HARVEST WITHDRAWAL SELECTOR -->
+        <div class="space-y-2">
+          <label class="text-[11px] font-extrabold text-stone-300 block">
+            CONTRACT HARVEST WITHDRAWAL AMOUNT
+          </label>
+          <div class="grid grid-cols-4 gap-2 font-mono-num font-bold text-xs">
+            <button onclick="setWithdrawAmount(25)" class="withdraw-preset-btn py-1.5 px-2 rounded-xl bg-[#17212b] border border-stone-700 hover:border-cyan-400 text-stone-200 cursor-pointer">$25.00</button>
+            <button onclick="setWithdrawAmount(50)" class="withdraw-preset-btn py-1.5 px-2 rounded-xl bg-cyan-600 border border-cyan-400 text-white cursor-pointer shadow">$50.00</button>
+            <button onclick="setWithdrawAmount(150)" class="withdraw-preset-btn py-1.5 px-2 rounded-xl bg-[#17212b] border border-stone-700 hover:border-cyan-400 text-stone-200 cursor-pointer">$150.00</button>
+            <button onclick="setWithdrawAmount('ALL')" class="withdraw-preset-btn py-1.5 px-2 rounded-xl bg-[#17212b] border border-stone-700 hover:border-cyan-400 text-stone-200 cursor-pointer">ALL</button>
+          </div>
+        </div>
+
+        <!-- EXPLORER VERIFICATION LINK -->
+        <div class="p-3 bg-[#131d27] rounded-xl border border-stone-800 text-[11px] text-stone-300 space-y-1">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-stone-200">Public Explorer Verification</span>
+            <a 
+              id="explorer-link" 
+              href="https://tonviewer.com/UQBLz9rXINTlzVUMuUHosRBTpUWqfoXQ8WTkyAgtbSVIbnBJ" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="text-cyan-400 hover:underline font-bold text-[10px] flex items-center gap-1"
+            >
+              <span>Inspect Tonviewer</span>
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+              </svg>
+            </a>
+          </div>
+          <p class="text-[10px] text-stone-400 font-mono-num truncate">
+            https://tonviewer.com/UQBLz9rXINTlzVUMuUHosRBTpUWqfoXQ8WTkyAgtbSVIbnBJ
+          </p>
+        </div>
+      </div>
+
+      <!-- WITHDRAW ACTION -->
+      <div class="pt-4 border-t border-stone-800 space-y-2">
+        <button 
+          id="btn-dispatch-withdrawal"
+          onclick="dispatchContractPayout()"
+          class="w-full py-3.5 bg-gradient-to-r from-blue-600 via-cyan-600 to-emerald-600 hover:from-blue-500 hover:to-emerald-500 text-white font-black text-xs uppercase tracking-wider rounded-xl shadow-xl flex items-center justify-center gap-2 cursor-pointer transition-all active:scale-98"
+        >
+          <svg class="w-4 h-4 text-yellow-300" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/>
+          </svg>
+          <span id="btn-withdraw-label">DISPATCH DIRECT CONTRACT WITHDRAWAL</span>
+        </button>
+
+        <p class="text-[10px] text-center text-stone-400 font-bold">
+          Zero delay payout. Funds settle on TON blockchain ledger without app escrow.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- JAVASCRIPT SIMULATION LOGIC -->
+  <script>
+    // State variables
+    let currentTonBalance = 142.85;
+    let currentUsdtBalance = 1280.00;
+    let clicksCount = 14;
+    let selectedWithdrawAmount = 50.00;
+    let isModalOpen = false;
+    let currentTab = 'chat';
+
+    // Toggle Modal Window
+    function toggleModal(forceState) {
+      const modal = document.getElementById('ecosystem-modal');
+      isModalOpen = typeof forceState === 'boolean' ? forceState : !isModalOpen;
+      
+      if (isModalOpen) {
+        modal.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
+        modal.classList.add('opacity-100', 'pointer-events-auto', 'scale-100');
+      } else {
+        modal.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
+        modal.classList.remove('opacity-100', 'pointer-events-auto', 'scale-100');
+        toggleSecretVault(false);
+      }
+    }
+
+    // Toggle Secret TON Vault
+    function toggleSecretVault(show) {
+      const vault = document.getElementById('secret-vault-overlay');
+      if (show) {
+        vault.classList.remove('hidden');
+      } else {
+        vault.classList.add('hidden');
+      }
+    }
+
+    // Switch between Chat and Community Tabs
+    function switchTab(tab) {
+      currentTab = tab;
+      const chatBtn = document.getElementById('tab-btn-chat');
+      const commBtn = document.getElementById('tab-btn-community');
+      const chatView = document.getElementById('view-chat');
+      const commView = document.getElementById('view-community');
+
+      if (tab === 'chat') {
+        chatBtn.className = "flex-1 py-2.5 px-3 text-xs font-black tracking-wide rounded-t-xl transition-all cursor-pointer flex items-center justify-center gap-1.5 border-t border-x bg-[#0e1621] text-white border-purple-500/50 border-b-transparent shadow";
+        commBtn.className = "flex-1 py-2.5 px-3 text-xs font-black tracking-wide rounded-t-xl transition-all cursor-pointer flex items-center justify-center gap-1.5 border-t border-x text-stone-400 hover:text-white border-transparent";
+        chatView.classList.remove('hidden');
+        commView.classList.add('hidden');
+      } else {
+        commBtn.className = "flex-1 py-2.5 px-3 text-xs font-black tracking-wide rounded-t-xl transition-all cursor-pointer flex items-center justify-center gap-1.5 border-t border-x bg-[#0e1621] text-white border-purple-500/50 border-b-transparent shadow";
+        chatBtn.className = "flex-1 py-2.5 px-3 text-xs font-black tracking-wide rounded-t-xl transition-all cursor-pointer flex items-center justify-center gap-1.5 border-t border-x text-stone-400 hover:text-white border-transparent";
+        commView.classList.remove('hidden');
+        chatView.classList.add('hidden');
+      }
+    }
+
+    // Chat simulation: User sends message
+    function sendChatMessage() {
+      const input = document.getElementById('chat-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const chatStream = document.getElementById('chat-stream');
+      
+      // Append User message
+      const userBubble = document.createElement('div');
+      userBubble.className = "flex flex-col items-end";
+      userBubble.innerHTML = `
+        <div class="max-w-[82%] rounded-2xl rounded-br-none px-4 py-2.5 bg-gradient-to-r from-[#6C52EE] to-[#7B61FF] text-white shadow text-xs font-semibold leading-relaxed">
+          <p>${escapeHtml(text)}</p>
+          <span class="block text-[9px] mt-1 font-mono text-purple-200 text-right">Just now</span>
+        </div>
+      `;
+      chatStream.appendChild(userBubble);
+      input.value = '';
+      chatStream.scrollTop = chatStream.scrollHeight;
+
+      // Simulated match response after short delay
+      setTimeout(() => {
+        const responses = [
+          "That sounds wonderful! I am so glad we matched here.",
+          "I love connecting with smart minds across the decentralized web.",
+          "Are you also tracking your yields directly to your TON wallet?",
+          "Check out the community feed too, people from Tokyo and Zurich are posting now!"
+        ];
+        const randomResp = responses[Math.floor(Math.random() * responses.length)];
+        
+        const matchBubble = document.createElement('div');
+        matchBubble.className = "flex flex-col items-start";
+        matchBubble.innerHTML = `
+          <div class="max-w-[82%] rounded-2xl rounded-bl-none px-4 py-2.5 bg-[#182533] text-stone-100 border border-stone-700/60 shadow text-xs font-semibold leading-relaxed">
+            <p>${randomResp}</p>
+            <span class="block text-[9px] mt-1 font-mono text-stone-400">Just now</span>
+          </div>
+        `;
+        chatStream.appendChild(matchBubble);
+        chatStream.scrollTop = chatStream.scrollHeight;
+      }, 1200);
+    }
+
+    // SIMULATE STEALTH DROP: "I have something to show you" with [Tap to View]
+    function simulateStealthDrop() {
+      const chatStream = document.getElementById('chat-stream');
+      
+      // 1. Text Message
+      const introMsg = document.createElement('div');
+      introMsg.className = "flex flex-col items-start";
+      introMsg.innerHTML = `
+        <div class="max-w-[82%] rounded-2xl rounded-bl-none px-4 py-2.5 bg-[#182533] text-stone-100 border border-stone-700/60 shadow text-xs font-semibold leading-relaxed">
+          <p>I have something to show you... Click below to view the private preview!</p>
+          <span class="block text-[9px] mt-1 font-mono text-stone-400">Just now</span>
+        </div>
+      `;
+      chatStream.appendChild(introMsg);
+
+      // 2. Interactive Monetization Drop Card with [Tap to View]
+      const dropCard = document.createElement('div');
+      const dropId = "drop-" + Date.now();
+      dropCard.id = dropId;
+      dropCard.className = "flex flex-col items-start w-full my-1";
+      dropCard.innerHTML = `
+        <div class="max-w-[90%] w-full bg-gradient-to-b from-[#1c2938] to-[#121c27] border-2 border-amber-500/80 rounded-2xl p-4 shadow-2xl space-y-3">
+          <div class="flex items-center justify-between border-b border-amber-500/40 pb-2">
+            <span class="text-[10px] font-extrabold text-amber-400 uppercase tracking-wider flex items-center gap-1">
+              <span>CONFIDENTIAL STEALTH DROP</span>
+            </span>
+            <span class="px-2 py-0.5 bg-amber-500/20 text-amber-300 text-[10px] font-black rounded font-mono-num">
+              +18.50 USDT
+            </span>
+          </div>
+          <div>
+            <h5 class="text-xs font-black text-white">VIP Confidential Stream and Telegram Pass</h5>
+            <p class="text-[11px] text-stone-300 mt-1 font-medium">Exclusive 1080p preview unlocked via decentralized community node.</p>
+          </div>
+          <div class="pt-1">
+            <button 
+              onclick="claimStealthDrop('${dropId}')"
+              class="w-full py-2.5 px-4 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-amber-400 hover:to-orange-400 text-stone-950 font-black text-xs uppercase tracking-wider rounded-xl shadow-lg flex items-center justify-center gap-2 cursor-pointer transition-transform active:scale-95"
+            >
+              <span>[Tap to View]</span>
+            </button>
+          </div>
+        </div>
+      `;
+      chatStream.appendChild(dropCard);
+      chatStream.scrollTop = chatStream.scrollHeight;
+    }
+
+    // Claim Stealth Drop Action
+    function claimStealthDrop(dropId) {
+      const card = document.getElementById(dropId);
+      if (card) {
+        const btnArea = card.querySelector('button');
+        if (btnArea) {
+          btnArea.outerHTML = `
+            <div class="w-full py-2 px-3 bg-emerald-950/90 border border-emerald-500/70 rounded-xl text-center text-xs font-black text-emerald-300">
+              YIELD RECORDED TO SECRET TON VAULT
+            </div>
+          `;
+        }
+      }
+
+      // Add to balance
+      currentUsdtBalance += 18.50;
+      currentTonBalance += 4.12;
+      clicksCount += 1;
+
+      updateBalanceUI();
+      showToast("High Value Stealth Click Verified! +18.50 USDT (+4.12 TON) added to your Secret Vault.");
+    }
+
+    // Next User Re-match
+    function reMatchNextUser() {
+      const matches = [
+        { name: "Chloe Dubois, 24", loc: "Paris, France", room: "ROOM 512", avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80" },
+        { name: "Aiko Tanaka, 23", loc: "Tokyo, Japan", room: "ROOM 909", avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80" },
+        { name: "Liam O Connor, 26", loc: "Dublin, Ireland", room: "ROOM 331", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" }
+      ];
+      const match = matches[Math.floor(Math.random() * matches.length)];
+
+      document.getElementById('match-name').innerText = match.name;
+      document.getElementById('match-location').innerText = match.loc;
+      document.getElementById('match-avatar').src = match.avatar;
+
+      const chatStream = document.getElementById('chat-stream');
+      const switchNotice = document.createElement('div');
+      switchNotice.className = "text-center my-2";
+      switchNotice.innerHTML = `
+        <span class="px-3 py-1 bg-stone-900/90 text-stone-400 text-[10px] font-extrabold rounded-full border border-stone-800 uppercase tracking-wider">
+          Merged into ${match.room} with ${match.name}
+        </span>
+      `;
+      chatStream.appendChild(switchNotice);
+
+      const greeting = document.createElement('div');
+      greeting.className = "flex flex-col items-start";
+      greeting.innerHTML = `
+        <div class="max-w-[82%] rounded-2xl rounded-bl-none px-4 py-2.5 bg-[#182533] text-stone-100 border border-stone-700/60 shadow text-xs font-semibold leading-relaxed">
+          <p>Hi there! Just matched with you from ${match.loc}. Nice to connect!</p>
+          <span class="block text-[9px] mt-1 font-mono text-stone-400">Just now</span>
+        </div>
+      `;
+      chatStream.appendChild(greeting);
+      chatStream.scrollTop = chatStream.scrollHeight;
+    }
+
+    // Community Feed: Like Post
+    function likePost(button) {
+      const span = button.querySelector('span');
+      if (span) {
+        let count = parseInt(span.innerText) || 100;
+        span.innerText = (count + 1) + " Likes";
+        button.classList.add('text-rose-400');
+      }
+    }
+
+    // Community Feed: Tip Creator
+    function tipCreator(name) {
+      showToast(`Tipped 0.50 TON to ${name}! Monetization transaction broadcasted.`);
+      currentTonBalance += 0.12; // 20% cut
+      updateBalanceUI();
+    }
+
+    // Community Feed: Publish Post
+    function publishCommunityPost() {
+      const input = document.getElementById('community-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const feedList = document.getElementById('community-feed-list');
+      const newCard = document.createElement('div');
+      newCard.className = "bg-[#17212b] rounded-2xl border border-stone-800 p-4 space-y-3 shadow-lg";
+      newCard.innerHTML = `
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80" alt="You" class="w-9 h-9 rounded-full object-cover border border-stone-700">
+            <div>
+              <h5 class="text-xs font-black text-white">Kansas Nelly (You)</h5>
+              <span class="text-[10px] text-stone-400 font-bold">Verified Node • Just now</span>
+            </div>
+          </div>
+          <span class="px-2 py-0.5 bg-blue-950 text-blue-300 text-[10px] font-extrabold rounded border border-blue-800">
+            ORIGIN POST
+          </span>
+        </div>
+        <p class="text-xs text-stone-200 font-medium leading-relaxed">${escapeHtml(text)}</p>
+        <div class="flex items-center justify-between pt-2 border-t border-stone-800/80 text-xs text-stone-400">
+          <button onclick="likePost(this)" class="flex items-center gap-1.5 font-bold hover:text-white cursor-pointer">
+            <svg class="w-4 h-4 text-rose-500 fill-rose-500" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/>
+            </svg>
+            <span>1 Like</span>
+          </button>
+          <span class="text-[11px] font-bold text-stone-400">0 replies</span>
+        </div>
+      `;
+      feedList.insertBefore(newCard, feedList.firstChild);
+      input.value = '';
+    }
+
+    // Vault: Copy Bound Wallet
+    function copyBoundWallet() {
+      const wallet = document.getElementById('input-payout-wallet').value;
+      navigator.clipboard.writeText(wallet);
+      const label = document.getElementById('btn-copy-label');
+      label.innerText = 'Copied!';
+      setTimeout(() => label.innerText = 'Copy', 2000);
+      showToast("Wallet address copied to clipboard!");
+    }
+
+    // Vault: Set Preset Amount
+    function setWithdrawAmount(amt) {
+      selectedWithdrawAmount = amt === 'ALL' ? currentUsdtBalance : amt;
+      const btns = document.querySelectorAll('.withdraw-preset-btn');
+      btns.forEach(b => {
+        b.className = "withdraw-preset-btn py-1.5 px-2 rounded-xl bg-[#17212b] border border-stone-700 hover:border-cyan-400 text-stone-200 cursor-pointer";
+      });
+      event.target.className = "withdraw-preset-btn py-1.5 px-2 rounded-xl bg-cyan-600 border border-cyan-400 text-white cursor-pointer shadow";
+    }
+
+    // Vault: Dispatch Contract Withdrawal
+    function dispatchContractPayout() {
+      const btn = document.getElementById('btn-dispatch-withdrawal');
+      const label = document.getElementById('btn-withdraw-label');
+      const wallet = document.getElementById('input-payout-wallet').value.trim();
+      const amt = selectedWithdrawAmount || 50.00;
+
+      btn.disabled = true;
+      label.innerText = "DISPATCHING ON CHAIN...";
+
+      setTimeout(() => {
+        btn.disabled = false;
+        label.innerText = "DISPATCH DIRECT CONTRACT WITHDRAWAL";
+        
+        currentUsdtBalance = Math.max(0, currentUsdtBalance - amt);
+        currentTonBalance = Math.max(0, currentTonBalance - (amt / 5.5));
+        updateBalanceUI();
+
+        toggleSecretVault(false);
+        showToast(`Confirmed On Chain! Successfully settled $${amt.toFixed(2)} USDT to ${wallet.slice(0, 8)}... (0.15 TON network gas allocated).`);
+      }, 1500);
+    }
+
+    // Update UI balances
+    function updateBalanceUI() {
+      document.getElementById('badge-ton-amount').innerText = currentTonBalance.toFixed(2) + ' TON';
+      document.getElementById('telemetry-usdt-amount').innerText = currentUsdtBalance.toFixed(2) + ' USDT';
+      document.getElementById('vault-ton-display').innerHTML = `${currentTonBalance.toFixed(2)} <span class="text-cyan-400 text-xl font-bold">TON</span>`;
+      document.getElementById('vault-usdt-display').innerText = `Approximately ${currentUsdtBalance.toFixed(2)} USDT Tether on TON`;
+      document.getElementById('clicks-counter').innerText = clicksCount;
+    }
+
+    // Toast functions
+    function showToast(msg) {
+      const banner = document.getElementById('toast-banner');
+      const text = document.getElementById('toast-text');
+      text.innerText = msg;
+      banner.classList.remove('hidden');
+      setTimeout(hideToast, 6000);
+    }
+    function hideToast() {
+      document.getElementById('toast-banner').classList.add('hidden');
+    }
+
+    function escapeHtml(text) {
+      return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+  </script>
+</body>
+</html>
