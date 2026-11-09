@@ -1,0 +1,26 @@
+{
+  "id": "/",
+  "name": "AlphaQubit Quantum Research & Live Ecosystem",
+  "short_name": "AlphaQubit",
+  "description": "Interactive AlphaQubit research platform integrated with real-time Shopify & Tidio visitor and revenue ecosystem.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#090A0E",
+  "theme_color": "#090A0E",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "64x64 192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
