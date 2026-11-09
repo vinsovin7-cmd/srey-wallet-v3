@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#07090e" />
+      <stop offset="40%" stop-color="#0f1422" />
+      <stop offset="70%" stop-color="#140f1f" />
+      <stop offset="100%" stop-color="#090a10" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F59E0B" />
+      <stop offset="50%" stop-color="#FCD34D" />
+      <stop offset="100%" stop-color="#D97706" />
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06B6D4" />
+      <stop offset="100%" stop-color="#3B82F6" />
+    </linearGradient>
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="15" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)" />
+
+  <!-- Ambient Glow Orbs -->
+  <circle cx="200" cy="150" r="180" fill="#06B6D4" opacity="0.12" filter="url(#glow)" />
+  <circle cx="1000" cy="180" r="220" fill="#F59E0B" opacity="0.12" filter="url(#glow)" />
+  <circle cx="600" cy="500" r="200" fill="#10B981" opacity="0.1" filter="url(#glow)" />
+
+  <!-- Outer Neon Border -->
+  <rect x="25" y="25" width="1150" height="580" rx="28" fill="none" stroke="#F59E0B" stroke-width="2" stroke-opacity="0.4" />
+  <rect x="35" y="35" width="1130" height="560" rx="20" fill="none" stroke="#06B6D4" stroke-width="1" stroke-opacity="0.3" />
+
+  <!-- Top Badges -->
+  <g transform="translate(60, 75)">
+    <!-- Live Badge -->
+    <rect x="0" y="0" width="150" height="38" rx="19" fill="#DC2626" />
+    <circle cx="22" cy="19" r="6" fill="#FFFFFF" />
+    <text x="38" y="25" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="900" font-size="16" letter-spacing="2">24/7 LIVE</text>
+
+    <!-- 4K Cinema Badge -->
+    <rect x="165" y="0" width="180" height="38" rx="19" fill="#1F2937" stroke="#F59E0B" stroke-width="1.5" />
+    <text x="185" y="25" fill="#FCD34D" font-family="system-ui, sans-serif" font-weight="800" font-size="15" letter-spacing="1">ULTRA HD 1080P</text>
+
+    <!-- Bonus Badge -->
+    <rect x="360" y="0" width="270" height="38" rx="19" fill="#065F46" stroke="#10B981" stroke-width="1.5" />
+    <text x="380" y="25" fill="#6EE7B7" font-family="system-ui, sans-serif" font-weight="900" font-size="15" letter-spacing="1">🎁 SHARE &amp; EARN $15 USDT</text>
+  </g>
+
+  <!-- Main Headline -->
+  <g transform="translate(60, 185)">
+    <text x="0" y="0" fill="url(#goldGrad)" font-family="system-ui, sans-serif" font-weight="900" font-size="52" letter-spacing="-1">
+      CELESTIAL CINEMA &amp; SREY SUITE
+    </text>
+    <text x="0" y="55" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="800" font-size="34">
+      Non-Stop 24/7 Broadcasts • Watch &amp; Earn Web3 Ecosystem
+    </text>
+  </g>
+
+  <!-- 3 Stream Cards -->
+  <!-- Card 1: Merlin -->
+  <g transform="translate(60, 290)">
+    <rect x="0" y="0" width="340" height="210" rx="18" fill="#111827" stroke="#3B82F6" stroke-width="2" />
+    <rect x="15" y="15" width="90" height="26" rx="13" fill="#1E3A8A" />
+    <text x="25" y="32" fill="#93C5FD" font-family="system-ui, sans-serif" font-weight="900" font-size="12">BBC SERIES</text>
+    <text x="18" y="80" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="900" font-size="24">MERLIN</text>
+    <text x="18" y="112" fill="#9CA3AF" font-family="system-ui, sans-serif" font-size="14">Camelot, Magic &amp; Prophecy</text>
+    <text x="18" y="136" fill="#60A5FA" font-family="system-ui, sans-serif" font-size="13">Arthur &amp; The Great Dragon</text>
+    
+    <rect x="18" y="155" width="304" height="38" rx="10" fill="#1E293B" stroke="#38BDF8" stroke-width="1" />
+    <text x="90" y="179" fill="#38BDF8" font-family="system-ui, sans-serif" font-weight="800" font-size="13">▶ STREAM FULL CINEMA</text>
+  </g>
+
+  <!-- Card 2: Legend of the Seeker -->
+  <g transform="translate(430, 290)">
+    <rect x="0" y="0" width="340" height="210" rx="18" fill="#111827" stroke="#F59E0B" stroke-width="2" />
+    <rect x="15" y="15" width="130" height="26" rx="13" fill="#78350F" />
+    <text x="25" y="32" fill="#FDE68A" font-family="system-ui, sans-serif" font-weight="900" font-size="12">SWORD OF TRUTH</text>
+    <text x="18" y="80" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="900" font-size="24">LEGEND OF SEEKER</text>
+    <text x="18" y="112" fill="#9CA3AF" font-family="system-ui, sans-serif" font-size="14">Richard Cypher &amp; Kahlan Amnell</text>
+    <text x="18" y="136" fill="#FBBF24" font-family="system-ui, sans-serif" font-size="13">Defending The Midlands Epic</text>
+
+    <rect x="18" y="155" width="304" height="38" rx="10" fill="#1E293B" stroke="#F59E0B" stroke-width="1" />
+    <text x="90" y="179" fill="#FBBF24" font-family="system-ui, sans-serif" font-weight="800" font-size="13">▶ STREAM FULL CINEMA</text>
+  </g>
+
+  <!-- Card 3: Al Jazeera Live -->
+  <g transform="translate(800, 290)">
+    <rect x="0" y="0" width="340" height="210" rx="18" fill="#111827" stroke="#10B981" stroke-width="2" />
+    <rect x="15" y="15" width="110" height="26" rx="13" fill="#064E3B" />
+    <text x="25" y="32" fill="#A7F3D0" font-family="system-ui, sans-serif" font-weight="900" font-size="12">GLOBAL NEWS</text>
+    <text x="18" y="80" fill="#FFFFFF" font-family="system-ui, sans-serif" font-weight="900" font-size="24">AL JAZEERA LIVE</text>
+    <text x="18" y="112" fill="#9CA3AF" font-family="system-ui, sans-serif" font-size="14">100% English 24/7 World News</text>
+    <text x="18" y="136" fill="#34D399" font-family="system-ui, sans-serif" font-size="13">Real-Time Global Reporting</text>
+
+    <rect x="18" y="155" width="304" height="38" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="1" />
+    <text x="85" y="179" fill="#34D399" font-family="system-ui, sans-serif" font-weight="800" font-size="13">▶ WATCH 24/7 LIVE STREAM</text>
+  </g>
+
+  <!-- Footer Banner: Share & Earn $15 USDT -->
+  <g transform="translate(60, 530)">
+    <rect x="0" y="0" width="1080" height="52" rx="14" fill="#064E3B" fill-opacity="0.8" stroke="#10B981" stroke-width="1.5" />
+    <text x="30" y="33" fill="#6EE7B7" font-family="system-ui, sans-serif" font-weight="900" font-size="17">
+      ⚡ GET $15.00 USDT INSTANT REWARD DIRECT TO YOUR IN-ACCOUNT BALANCE WHEN YOU SHARE THIS LINK!
+    </text>
+    <text x="960" y="33" fill="#FCD34D" font-family="system-ui, sans-serif" font-weight="800" font-size="14">
+      TON GASLESS
+    </text>
+  </g>
+</svg>
