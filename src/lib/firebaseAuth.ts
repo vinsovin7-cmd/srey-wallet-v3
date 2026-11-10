@@ -7,11 +7,26 @@ import {
   signOut,
   User
 } from "firebase/auth";
-import firebaseConfig from "../../firebase-applet-config.json";
+const firebaseConfig = {
+  apiKey: (import.meta as any).env?.VITE_FIREBASE_API_KEY || "AIzaSy_MOCK_API_KEY_FALLBACK",
+  authDomain: (import.meta as any).env?.VITE_FIREBASE_AUTH_DOMAIN || "project-1c25af84-ea05-443f-bce.firebaseapp.com",
+  projectId: (import.meta as any).env?.VITE_FIREBASE_PROJECT_ID || "project-1c25af84-ea05-443f-bce",
+  storageBucket: (import.meta as any).env?.VITE_FIREBASE_STORAGE_BUCKET || "project-1c25af84-ea05-443f-bce.firebasestorage.app",
+  messagingSenderId: (import.meta as any).env?.VITE_FIREBASE_MESSAGING_SENDER_ID || "980584680765",
+  appId: (import.meta as any).env?.VITE_FIREBASE_APP_ID || "1:980584680765:web:cc2399391f9674da49c954",
+  oAuthClientId: (import.meta as any).env?.VITE_FIREBASE_OAUTH_CLIENT_ID || "552089150822-hjjnm04mt32aftj0drnttsok81ih36qj.apps.googleusercontent.com"
+};
 
-// Initialize Firebase App if not already initialized
-const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-export const auth = getAuth(app);
+// Initialize Firebase App safely with try/catch fallback
+let app: any = null;
+try {
+  app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+} catch (e) {
+  console.warn("Firebase initialization notice:", e);
+}
+
+export const auth = app ? getAuth(app) : ({} as any);
+export const oAuthClientId = firebaseConfig.oAuthClientId;
 
 const provider = new GoogleAuthProvider();
 // Request Gmail & Profile Scopes
