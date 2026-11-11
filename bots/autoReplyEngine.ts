@@ -2,12 +2,13 @@
 import { Telegraf, Markup } from 'telegraf';
 import { isAddressQuarantined } from '../src/services/securityQuarantine.ts';
 
-// RESTORED: Telegraf Bot Token for @Geminisreybot
-const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || process.env.PROCESS_ENV_BOT_TOKEN || "8513756424:AAFBTFeIiQA5fglLOz4HXxSixylSwGjGsgA";
-export const WEB_APP_URL = "https://ais-pre-yri2x2xif26llxnhpuguzk-152195627325.asia-east1.run.app";
-export const LANDING_URL = "https://ais-pre-yri2x2xif26llxnhpuguzk-152195627325.asia-east1.run.app";
-export const MINI_APP_URL = "https://t.me/gemini_srey_bot/sreymara";
-export const MINI_APP_ALT_URL = "https://t.me/Geminisreybot/sreymara";
+// Live Telegraf Bot Token from environment variable or active verified Sreyquantumbot
+const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || process.env.PROCESS_ENV_BOT_TOKEN || "9065775599:AAGgjKRvtVDkugmx9rD1SaXIXtLVrmTHuDk";
+const BOT_USERNAME = process.env.TELEGRAM_BOT_USERNAME || "Sreyquantumbot";
+export const WEB_APP_URL = process.env.SHARED_APP_URL || "https://ais-pre-yri2x2xif26llxnhpuguzk-152195627325.asia-east1.run.app";
+export const LANDING_URL = WEB_APP_URL;
+export const MINI_APP_URL = process.env.TELEGRAM_MINIAPP_URL || `https://t.me/${BOT_USERNAME}`;
+export const MINI_APP_ALT_URL = `https://t.me/${BOT_USERNAME}/AlphaQubit`;
 export const ACTIVE_KEY = "5dd2...ecb2";
 
 export let bot: Telegraf | null = null;

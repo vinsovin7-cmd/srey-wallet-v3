@@ -583,11 +583,11 @@ export const AdsGramTonPayoutSuite: React.FC<AdsGramTonPayoutSuiteProps> = ({ on
             <div className="flex items-center justify-between flex-wrap gap-2">
               <h4 className="font-serif font-bold text-sm text-sky-300 flex items-center gap-2">
                 <Send size={15} />
-                <span>Telegram Bot API Micro-Earnings Hub: @gemini_sreymara_bot</span>
+                <span>Telegram Bot API Micro-Earnings Hub: @Sreyquantumbot</span>
               </h4>
               <div className="flex items-center gap-2">
                 <a
-                  href="https://t.me/gemini_sreymara_bot/SREYMARA"
+                  href="https://t.me/Sreyquantumbot"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-2.5 py-0.5 bg-sky-900/60 hover:bg-sky-800 text-sky-200 border border-sky-600 rounded text-[10px] font-mono flex items-center gap-1"
@@ -596,12 +596,12 @@ export const AdsGramTonPayoutSuite: React.FC<AdsGramTonPayoutSuiteProps> = ({ on
                   <ExternalLink size={10} />
                 </a>
                 <span className="px-2 py-0.5 bg-emerald-950 text-emerald-300 border border-emerald-800 rounded text-[10px] font-mono">
-                  ACTIVE_BOT_8923557971
+                  ACTIVE_BOT_9065775599
                 </span>
               </div>
             </div>
             <p className="text-xs text-stone-400">
-              Authenticated via Bot Token <code className="text-emerald-400 font-mono text-[11px]">8923557971:AAEBxN...</code> with Telegram platform & monetization services. Validates message interactions to automate micro-earnings.
+              Authenticated via Bot Token <code className="text-emerald-400 font-mono text-[11px]">9065775599:AAGgjK...</code> with Telegram platform & monetization services. Validates message interactions to automate micro-earnings.
             </p>
 
             <div className="p-2.5 bg-[#0D101A] border border-amber-500/30 rounded-xl flex items-center justify-between flex-wrap gap-2 text-xs font-mono">

@@ -131,7 +131,7 @@ export async function buildStandaloneApk(
       <h1>${appName} Native Standalone</h1>
       <p>Package ID: <code>${packageName}</code> (Version: ${versionName})</p>
       <p>Size: <strong>78.4 MB</strong> • Standalone Android Hybrid Runtime with all 9 Ecosystem Suites, Mini Cinema 4K, AdsGram Payout Suite, and Telegram Notification Boss.</p>
-      <a href="https://t.me/GeminiSreymaraBot" class="btn">Launch Live Connected Ecosystem</a>
+      <a href="https://t.me/Sreyquantumbot" class="btn">Launch Live Connected Ecosystem</a>
     </div>
   </div>
 </body>

@@ -84,7 +84,7 @@ export const CommunityEcosystemHub: React.FC<CommunityEcosystemHubProps> = ({
   }>({
     text: "🎯 **New High-Yield Quiz Challenge Available!**\nChoose an option below to engage and claim USDT rewards directly to your Telegram Wallet:",
     buttons: [
-      { text: "➡️ Proceed & Play Quiz", type: "web_app", url: "https://t.me/GeminiSreymaraBot/sreymara" },
+      { text: "➡️ Proceed & Play Quiz", type: "web_app", url: "https://t.me/Sreyquantumbot/sreymara" },
       { text: "⏭️ Next / Quick Claim", type: "callback", action: "ACTION_NEXT_CLAIM" }
     ]
   });
@@ -169,7 +169,7 @@ export const CommunityEcosystemHub: React.FC<CommunityEcosystemHubProps> = ({
 
 
   // Copy Referral Link
-  const referralUrl = `https://t.me/GeminiSreymaraBot/sreymara?start=ref_${referralCode}`;
+  const referralUrl = `https://t.me/Sreyquantumbot/sreymara?start=ref_${referralCode}`;
   const handleCopyReferral = () => {
     navigator.clipboard.writeText(referralUrl);
     setCopiedLink(true);
@@ -206,14 +206,14 @@ export const CommunityEcosystemHub: React.FC<CommunityEcosystemHubProps> = ({
       id: 1,
       question: "Which official Telegram Bot hosts the verified Sreymara Mini App & Task Optimizer?",
       options: [
-        "@GeminiSreymaraBot",
+        "@Sreyquantumbot",
         "@RandomSpamBot",
         "@LegacyUnverifiedBot",
         "@StaticHtmlBot"
       ],
       correct: 0,
       reward: 0.05,
-      explanation: "Correct! @GeminiSreymaraBot hosts the official React @telegram-apps/sdk Mini App."
+      explanation: "Correct! @Sreyquantumbot hosts the official React @telegram-apps/sdk Mini App."
     },
     {
       id: 2,
@@ -662,14 +662,14 @@ export const CommunityEcosystemHub: React.FC<CommunityEcosystemHubProps> = ({
                 <span className="text-[10px] font-mono text-amber-300 font-bold">⚡ Deep Link</span>
               </div>
               <h4 className="text-sm font-bold text-white mt-2 group-hover:text-emerald-300 transition-colors">
-                @GeminiSreymaraBot
+                @Sreyquantumbot
               </h4>
               <p className="text-[11px] text-stone-400 mt-1 leading-snug">
                 Launches the full interactive React Mini App inside Telegram with automated task optimization.
               </p>
             </div>
             <a
-              href="https://t.me/GeminiSreymaraBot/sreymara"
+              href="https://t.me/Sreyquantumbot/sreymara"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full py-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-stone-950 rounded-xl text-xs font-black text-center transition-all flex items-center justify-center gap-1.5 shadow-lg"
@@ -870,7 +870,7 @@ export const CommunityEcosystemHub: React.FC<CommunityEcosystemHubProps> = ({
                   #4
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-white">Launch Task Optimizer TMA @GeminiSreymaraBot</div>
+                  <div className="text-xs font-bold text-white">Launch Task Optimizer TMA @Sreyquantumbot</div>
                   <div className="text-[10px] text-stone-400">Earn +200 XP • +$0.20 USDT instant TON balance credit</div>
                 </div>
               </div>
@@ -881,7 +881,7 @@ export const CommunityEcosystemHub: React.FC<CommunityEcosystemHubProps> = ({
                 </span>
               ) : (
                 <button
-                  onClick={() => handleVerifyQuest("quest_bot_tma", "https://t.me/GeminiSreymaraBot/sreymara", 0.20)}
+                  onClick={() => handleVerifyQuest("quest_bot_tma", "https://t.me/Sreyquantumbot/sreymara", 0.20)}
                   disabled={questStatuses.quest_bot_tma === "verifying"}
                   className="px-3 py-1 bg-emerald-500 hover:bg-emerald-400 text-stone-950 text-xs font-bold rounded-lg transition-all cursor-pointer flex items-center gap-1 shadow"
                 >
@@ -1113,7 +1113,7 @@ export const CommunityEcosystemHub: React.FC<CommunityEcosystemHubProps> = ({
               </div>
               <div>
                 <div className="text-xs font-bold text-white flex items-center gap-1.5">
-                  <span>@GeminiSreymaraBot</span>
+                  <span>@Sreyquantumbot</span>
                   <span className="text-[9px] text-[#0088cc] font-mono">bot</span>
                 </div>
                 <div className="text-[10px] text-stone-400">Telegram Bot API Auto-Responder</div>
@@ -1143,7 +1143,7 @@ export const CommunityEcosystemHub: React.FC<CommunityEcosystemHubProps> = ({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
                 {/* Button 1: Web App */}
                 <a
-                  href="https://t.me/GeminiSreymaraBot/sreymara"
+                  href="https://t.me/Sreyquantumbot/sreymara"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="py-2.5 px-3 bg-[#0088cc] hover:bg-[#0077b5] text-white rounded-xl text-xs font-bold text-center transition-all flex items-center justify-center gap-1.5 shadow"

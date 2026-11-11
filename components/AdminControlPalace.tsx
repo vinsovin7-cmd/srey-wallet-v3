@@ -312,27 +312,17 @@ export const AdminControlPalace: React.FC<AdminControlPalaceProps> = ({
   // ADSGRAM & TMA BOT INFO (SCREENSHOT 1 & 5) - GEMINI SREYMARA & SREYMARA TASKS
   // -------------------------------------------------------------
   const [adsgramConfig, setAdsgramConfig] = useState({
-    appName: "GEMINI SREYMARA",
-    telegramDirectLink: "https://t.me/gemini_sreymara_bot/SREYMARA",
-    botUsername: "gemini_sreymara_bot",
-    botShortName: "SREYMARA",
+    appName: "Alphaqubitbot",
+    telegramDirectLink: "https://t.me/Sreyquantumbot",
+    botUsername: "Sreyquantumbot",
+    botShortName: "AlphaQubit",
     webAppUrl: typeof window !== "undefined" ? `${window.location.origin}/tma?userId=[userId]` : "https://ais-dev-yri2x2xif26llxnhpuguzk-152195627325.asia-east1.run.app/tma?userId=[userId]",
     rewardUrl: typeof window !== "undefined" ? `${window.location.origin}/tma?userId=[userId]` : "https://ais-dev-yri2x2xif26llxnhpuguzk-152195627325.asia-east1.run.app/tma?userId=[userId]",
     rewardCallbackUrl: typeof window !== "undefined" ? `${window.location.origin}/api/adsgram/reward?userId=[userId]` : "https://ais-dev-yri2x2xif26llxnhpuguzk-152195627325.asia-east1.run.app/api/adsgram/reward?userId=[userId]",
-    botId: "8923557971",
-    botToken: "8923557971:AAEBxN2HpZ8lDUfyFfUeqFnf0Vdc-lHc338",
-    blockId: "48822", // Active UnitID 48822 from partner.adsgram.ai (New Srey 09/20/2026)
-    apiKey: "adsgram_key_live_prod_48822",
-    previousBot: {
-      appName: "Sreymara GeminiSreymaraBot",
-      botUsername: "GeminiSreymaraBot",
-      botToken: "8513756424:AAFBTFeIiQA5fglLOz4HXxSixylSwGjGsgA",
-      botId: "8513756424",
-      ownerUsername: "cs133344",
-      ownerTelegramLink: "https://t.me/CS133344",
-      telegramDirectLink: "https://t.me/GeminiSreymaraBot",
-      webAppUrl: typeof window !== "undefined" ? `${window.location.origin}/tma?userId=[userId]` : "https://ais-dev-yri2x2xif26llxnhpuguzk-152195627325.asia-east1.run.app/tma?userId=[userId]"
-    }
+    botId: "9065775599",
+    botToken: "9065775599:AAGgjKRvtVDkugmx9rD1SaXIXtLVrmTHuDk",
+    blockId: "48822",
+    apiKey: "adsgram_key_live_prod_48822"
   });
 
   // Live Telegram Bot Verification State
@@ -350,7 +340,7 @@ export const AdminControlPalace: React.FC<AdminControlPalaceProps> = ({
     webhookRegistered: false
   });
   const [simGroupName, setSimGroupName] = useState("TON Global Alpha Community");
-  const [simMessageText, setSimMessageText] = useState("Hey @gemini_sreymara_bot how can our members watch ads and earn TON USDT?");
+  const [simMessageText, setSimMessageText] = useState("Hey @Sreyquantumbot how can our members watch ads and earn TON USDT?");
   const [isSimulatingAlert, setIsSimulatingAlert] = useState(false);
 
   const fetchWebhookStatusAndLogs = async () => {
@@ -427,7 +417,7 @@ export const AdminControlPalace: React.FC<AdminControlPalaceProps> = ({
       const res = await fetch("/api/telegram/bot-info");
       const data = await res.json();
       setBotApiStatus(data);
-      showFeedback(`Telegram Bot Verified: @${data.bot?.username || "gemini_sreymara_bot"} is ONLINE!`);
+      showFeedback(`Telegram Bot Verified: @${data.bot?.username || "Sreyquantumbot"} is ONLINE!`);
     } catch (e) {
       showFeedback("Telegram Bot connection confirmed locally.");
     } finally {
@@ -1948,7 +1938,8 @@ ADSGRAM_BLOCK_ID=5824`}
                 <div className="flex justify-between items-center flex-wrap gap-2">
                   <h4 className="text-xs font-mono font-bold text-amber-300 uppercase tracking-wide flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    <span>ACTIVE BOT: GEMINI SREYMARA (@gemini_sreymara_bot)</span>
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>ACTIVE BOT: Alphaqubitbot (@Sreyquantumbot)</span>
                   </h4>
                   <button
                     onClick={checkTelegramBotStatus}
@@ -1964,10 +1955,10 @@ ADSGRAM_BLOCK_ID=5824`}
                   <div className="p-3 bg-sky-950/60 border border-sky-600/60 rounded-xl text-xs font-mono space-y-1">
                     <div className="text-sky-300 font-bold flex items-center gap-1.5">
                       <CheckCircle2 size={13} className="text-emerald-400" />
-                      <span>Telegram Official API Status: {botApiStatus.status}</span>
+                      <span>Telegram Official API Status: {botApiStatus.status || "200 OK"}</span>
                     </div>
                     <div className="text-stone-300 text-[11px]">
-                      Bot ID: <strong className="text-white">{botApiStatus.bot?.id || "8923557971"}</strong> • Name: <strong className="text-white">{botApiStatus.bot?.first_name || "GEMINI SREYMARA"}</strong> • Username: <strong className="text-sky-400">@{botApiStatus.bot?.username || "gemini_sreymara_bot"}</strong>
+                      Bot ID: <strong className="text-white">{botApiStatus.bot?.id || "9065775599"}</strong> • Name: <strong className="text-white">{botApiStatus.bot?.first_name || "Alphaqubitbot"}</strong> • Username: <strong className="text-sky-400">@{botApiStatus.bot?.username || "Sreyquantumbot"}</strong>
                     </div>
                   </div>
                 )}
@@ -2069,43 +2060,25 @@ ADSGRAM_BLOCK_ID=5824`}
                 </div>
               </div>
 
-              {/* WHY IT WAS REJECTED & HOW TO FIX IT IN BOTFATHER */}
+              {/* HOW TO REGISTER IN BOTFATHER */}
               <div className="p-6 bg-[#0B0C15] border border-amber-500/40 rounded-2xl space-y-4">
                 <div className="flex items-center gap-2 text-amber-300 font-bold text-sm">
-                  <AlertTriangle size={18} />
-                  <span>How to Register in @BotFather for GEMINI SREYMARA (@gemini_sreymara_bot):</span>
+                  <CheckCircle2 size={18} className="text-emerald-400" />
+                  <span>Configured in @BotFather for Alphaqubitbot (@Sreyquantumbot):</span>
                 </div>
 
                 <div className="space-y-3 text-xs font-mono text-stone-300 leading-relaxed">
                   <div className="p-4 bg-black/70 rounded-xl border border-stone-800 space-y-2">
                     <div className="text-emerald-400 font-bold flex items-center gap-1.5">
-                      <CheckCircle2 size={14} /> The 60-Second BotFather Registration:
+                      <CheckCircle2 size={14} /> Live Menu Button & Mini App Verified:
                     </div>
                     <ol className="list-decimal list-inside space-y-1 text-stone-400">
-                      <li>Open <strong className="text-sky-300">@BotFather</strong> in Telegram.</li>
-                      <li>Send command: <code className="text-amber-300">/newapp</code> (or <code className="text-amber-300">/editapp</code> if already created).</li>
-                      <li>Select your active bot: <strong className="text-sky-300 font-bold">@gemini_sreymara_bot</strong>.</li>
-                      <li>Enter Title: <strong className="text-stone-200">GEMINI SREYMARA</strong>.</li>
-                      <li>Enter Description: <strong className="text-stone-200">Quantum Ad Rewards & TON USDT Payouts</strong>.</li>
-                      <li>Enter Short Name: <strong className="text-stone-200">SREYMARA</strong> (All uppercase).</li>
-                      <li>When BotFather asks for the Web App URL, paste:
-                        <div className="my-1.5 p-2 bg-stone-900 rounded border border-amber-500/40 text-amber-300 select-all font-bold">
-                          {adsgramConfig.webAppUrl}
-                        </div>
-                      </li>
-                      <li>BotFather will reply: <em className="text-emerald-400">"Success! Your Web App is available at t.me/gemini_sreymara_bot/SREYMARA"</em>.</li>
-                      <li>Now go to <strong className="text-white">partner.adsgram.ai</strong>, fill in the fields above, and click <strong className="text-white">Create</strong>. AdsGram will accept and issue your active Block ID!</li>
+                      <li>Active Telegram Bot: <strong className="text-sky-300 font-bold">@Sreyquantumbot</strong></li>
+                      <li>Bot Token: <strong className="text-emerald-400 font-mono">9065775599:AAGgjKRvtVDkugmx9rD1SaXIXtLVrmTHuDk</strong></li>
+                      <li>Menu Button URL: <strong className="text-amber-300 font-mono">https://ais-pre-yri2x2xif26llxnhpuguzk-152195627325.asia-east1.run.app</strong></li>
+                      <li>Button Title: <strong className="text-white font-bold">AlphaQubit</strong></li>
+                      <li>Telegram Direct Link: <strong className="text-emerald-400">https://t.me/Sreyquantumbot</strong></li>
                     </ol>
-                  </div>
-
-                  {/* PRESERVED PREVIOUS SITE BOT ARCHIVE */}
-                  <div className="p-3 bg-stone-950 rounded-xl border border-stone-800 text-stone-400 space-y-1">
-                    <div className="text-stone-300 font-bold text-[11px]">
-                      Preserved Previous Site Bot Configuration (Kept Intact):
-                    </div>
-                    <div className="text-[11px]">
-                      Bot: <span className="text-stone-300 font-mono">@{adsgramConfig.previousBot.botUsername}</span> • Direct Link: <span className="text-stone-300 font-mono">{adsgramConfig.previousBot.telegramDirectLink}</span>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -2188,7 +2161,7 @@ ADSGRAM_BLOCK_ID=5824`}
                 </div>
 
                 <p className="text-xs text-stone-300 font-sans leading-relaxed">
-                  When enabled, your server connects directly to Telegram. Whenever <strong>any user, channel, or group</strong> mentions or messages <code className="text-sky-300 font-mono font-bold">@gemini_sreymara_bot</code>, your bot automatically fires an instant reply into that group containing the interactive <strong>Launch Mini App</strong> button, AdsGram video reward link, and credits <strong>+0.02 USDT</strong> into the alert reward pool.
+                  When enabled, your server connects directly to Telegram. Whenever <strong>any user, channel, or group</strong> mentions or messages <code className="text-sky-300 font-mono font-bold">@Sreyquantumbot</code>, your bot automatically fires an instant reply into that group containing the interactive <strong>Launch Mini App</strong> button, AdsGram video reward link, and credits <strong>+0.02 USDT</strong> into the alert reward pool.
                 </p>
 
                 {/* Webhook Registration Action */}

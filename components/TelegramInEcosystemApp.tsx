@@ -164,7 +164,7 @@ export const TelegramInEcosystemApp: React.FC<TelegramInEcosystemAppProps> = ({
     },
     {
       id: "cinema",
-      name: "Sreymara Cinema Bot (@GeminiSreymaraBot)",
+      name: "Sreymara Cinema Bot (@Sreyquantumbot)",
       avatar: "🎬",
       avatarBg: "bg-amber-600",
       isVerified: true,
@@ -256,7 +256,7 @@ export const TelegramInEcosystemApp: React.FC<TelegramInEcosystemAppProps> = ({
       {
         id: "c-0",
         sender: "bot",
-        senderName: "Sreymara Cinema Bot (@GeminiSreymaraBot)",
+        senderName: "Sreymara Cinema Bot (@Sreyquantumbot)",
         text: "WELCOME TO SREYMARA CINEMA! 🎬\n\nI'M HERE TO HELP YOU NAVIGATE THE APP. CHOOSE AN OPTION BELOW, OR TYPE A WORD LIKE \"HOME\", \"CINEMA\" OR \"CHAT\".",
         timestamp: "Live"
       }
@@ -479,7 +479,7 @@ export const TelegramInEcosystemApp: React.FC<TelegramInEcosystemAppProps> = ({
         const botReply: ChatMessage = {
           id: `reply-${Date.now()}`,
           sender: "bot",
-          senderName: "Sreymara Cinema Bot (@GeminiSreymaraBot)",
+          senderName: "Sreymara Cinema Bot (@Sreyquantumbot)",
           text: replyText,
           timestamp: "Just now"
         };
@@ -531,7 +531,7 @@ export const TelegramInEcosystemApp: React.FC<TelegramInEcosystemAppProps> = ({
       const botReply: ChatMessage = {
         id: `reply-${Date.now()}`,
         sender: "bot",
-        senderName: "Sreymara Cinema Bot (@GeminiSreymaraBot)",
+        senderName: "Sreymara Cinema Bot (@Sreyquantumbot)",
         text: replyText,
         timestamp: "Just now"
       };

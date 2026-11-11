@@ -373,7 +373,7 @@ export const WebsiteToAppConverter: React.FC<{
           })
         });
         const data = await res.json();
-        setDownloadNotice(`🤖 Dispatched APK to Telegram Bot (@GeminiSreymaraBot)! Check your Telegram messages.`);
+        setDownloadNotice(`🤖 Dispatched APK to Telegram Bot (@Sreyquantumbot)! Check your Telegram messages.`);
         setApkDownloadLoading(false);
         return;
       } catch (e) {

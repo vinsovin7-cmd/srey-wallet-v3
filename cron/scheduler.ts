@@ -2,7 +2,7 @@
 import cron from 'node-cron';
 
 export const TARGET_WALLET = "UQBLz9rXINTlzVUMuUHosRBTpUWqfoXQ8WTkyAgtbSVIbnBJ";
-export const MINI_APP_LINK = "https://t.me/GeminiSreymaraBot/sreymara";
+export const MINI_APP_LINK = process.env.TELEGRAM_MINIAPP_URL || `https://t.me/${process.env.TELEGRAM_BOT_USERNAME || 'Sreyquantumbot'}`;
 export const ACTIVE_AUTH_KEY = "5dd2...ecb2";
 
 export interface BroadcastLog {

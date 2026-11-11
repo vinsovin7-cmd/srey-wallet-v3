@@ -6,21 +6,39 @@ import App from './App';
 import './index.css';
 
 const getTonConnectManifestUrl = (): string => {
-  if (typeof window === 'undefined') return '/tonconnect-manifest.json';
-  const origin = window.location.origin;
+  try {
+    if (typeof window === 'undefined' || !window.location) {
+      return 'https://ton-connect.github.io/demo-dapp-with-react-ui/tonconnect-manifest.json';
+    }
+    const origin = window.location.origin || '';
+    if (
+      !origin ||
+      origin === 'null' ||
+      origin.includes('run.app') ||
+      origin.includes('localhost') ||
+      origin.includes('127.0.0.1') ||
+      origin.includes('earnings-platform') ||
+      origin.startsWith('file:')
+    ) {
+      return 'https://ton-connect.github.io/demo-dapp-with-react-ui/tonconnect-manifest.json';
+    }
 
-  // External mobile apps (Tonkeeper, Trust Wallet) cannot authenticate through Google Cloud Run cookie tunnels
-  // Also guard against legacy preview vercel URLs that returned 404s
-  if (
-    origin.includes('run.app') ||
-    origin.includes('localhost') ||
-    origin.includes('127.0.0.1') ||
-    origin.includes('earnings-platform')
-  ) {
+    return `${origin}/tonconnect-manifest.json`;
+  } catch {
     return 'https://ton-connect.github.io/demo-dapp-with-react-ui/tonconnect-manifest.json';
   }
+};
 
-  return `${origin}/tonconnect-manifest.json`;
+const getSafeTwaReturnUrl = (): `${string}://${string}` => {
+  try {
+    if (typeof window !== 'undefined' && window.location) {
+      const origin = window.location.origin;
+      if (origin && origin !== 'null' && (origin.startsWith('https://') || origin.startsWith('http://'))) {
+        return origin as `${string}://${string}`;
+      }
+    }
+  } catch {}
+  return 'https://vinsovin7-cmd-srey-wallet-v2.vercel.app' as `${string}://${string}`;
 };
 
 const MANIFEST_URL = getTonConnectManifestUrl();
@@ -123,20 +141,79 @@ export class ErrorBoundary extends React.Component<{ children: React.ReactNode }
   }
 }
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <ErrorBoundary>
+class TonConnectErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean }> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(err: any) {
+    console.warn("TonConnect provider caught error, isolating gracefully:", err);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <>{this.props.children}</>;
+    }
+    return this.props.children;
+  }
+}
+
+function SafeTonConnectProvider({ children }: { children: React.ReactNode }) {
+  return (
+    <TonConnectErrorBoundary>
       <TonConnectUIProvider
         manifestUrl={MANIFEST_URL}
         uiPreferences={{
           theme: THEME.DARK
         }}
         actionsConfiguration={{
-          twaReturnUrl: window.location.origin as `${string}://${string}`
+          twaReturnUrl: getSafeTwaReturnUrl()
         }}
       >
-        <App />
+        {children}
       </TonConnectUIProvider>
-    </ErrorBoundary>
-  </React.StrictMode>
-);
+    </TonConnectErrorBoundary>
+  );
+}
+
+const mountApp = () => {
+  const rootElement = document.getElementById('root');
+  if (!rootElement) return;
+
+  try {
+    const root = ReactDOM.createRoot(rootElement);
+    root.render(
+      <React.StrictMode>
+        <ErrorBoundary>
+          <SafeTonConnectProvider>
+            <App />
+          </SafeTonConnectProvider>
+        </ErrorBoundary>
+      </React.StrictMode>
+    );
+  } catch (mountErr) {
+    console.error("Critical mounting exception caught safely:", mountErr);
+    // Bulletproof direct render fallback
+    try {
+      const root = ReactDOM.createRoot(rootElement);
+      root.render(
+        <ErrorBoundary>
+          <App />
+        </ErrorBoundary>
+      );
+    } catch (fallbackErr) {
+      console.error("Secondary mount fallback exception:", fallbackErr);
+    }
+  }
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', mountApp);
+} else {
+  mountApp();
+}

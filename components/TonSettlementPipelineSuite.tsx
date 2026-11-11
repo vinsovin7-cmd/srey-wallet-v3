@@ -298,7 +298,7 @@ export const TonSettlementPipelineSuite: React.FC = () => {
           </button>
 
           <button
-            onClick={() => executePipelineFlush(500.00, "@GeminiSreymaraBot / Tasks Module")}
+            onClick={() => executePipelineFlush(500.00, "@Sreyquantumbot / AlphaQubit Module")}
             disabled={flushing}
             className="p-3 bg-stone-900 hover:bg-stone-800 border border-stone-800 hover:border-blue-500/50 rounded-xl text-left transition-all cursor-pointer group"
           >
@@ -342,7 +342,7 @@ export const TonSettlementPipelineSuite: React.FC = () => {
               className="w-full px-3 py-2 bg-stone-950 border border-stone-800 rounded-xl text-xs font-mono text-stone-200 focus:outline-none focus:border-blue-500"
             >
               <option value="Adsgram Ad Revenue Engine">Adsgram Ad Revenue Engine</option>
-              <option value="@GeminiSreymaraBot / Tasks Module">@GeminiSreymaraBot / Tasks Module</option>
+              <option value="@Sreyquantumbot / AlphaQubit Module">@Sreyquantumbot / AlphaQubit Module</option>
               <option value="@Earnningsonlinebot / Earn Engine">@Earnningsonlinebot / Earn Engine</option>
               <option value="earnings.ink Web Portal Yield">earnings.ink Web Portal Yield</option>
               <option value="Telegram Community Quests">Telegram Community Quests</option>

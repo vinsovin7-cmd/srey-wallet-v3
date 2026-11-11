@@ -2132,7 +2132,7 @@ export const PortableMiniCinemaEcosystem: React.FC<PortableMiniCinemaEcosystemPr
       source: "Telegram @cs133344 Auto-Alert",
       badge: "TELEGRAM S2S",
       color: "sky",
-      region: "@GeminiSreymaraBot",
+      region: "@Sreyquantumbot",
       text: "Incoming message intercepted for @cs133344. Automated mini view logged to micro USDT ledger.",
       timestamp: "3 mins ago",
       rewardUsdt: 0.02
@@ -2965,7 +2965,7 @@ export const PortableMiniCinemaEcosystem: React.FC<PortableMiniCinemaEcosystemPr
                   ⚡ [ADSGRAM S2S CALLBACK] UNITID 48822 REWARD URL VERIFIED • REAL-TIME MICRO-USDT ACTIVE
                 </span>
                 <span className="text-emerald-400">
-                  🛡️ [TELEGRAM DISPATCH] @CS133344 & @GeminiSreymaraBot OPERATING 100% CLEAN
+                  🛡️ [TELEGRAM DISPATCH] @CS133344 & @Sreyquantumbot OPERATING 100% CLEAN
                 </span>
                 <span className="text-rose-300">
                   🎬 [VIP CINEMA] CONTINUOUS ACTIVE PLAYBACK • ZERO FROZEN PICTURES • 25 CHANNELS + AL JAZEERA
@@ -5413,7 +5413,7 @@ export const PortableMiniCinemaEcosystem: React.FC<PortableMiniCinemaEcosystemPr
                       </div>
                       <div>
                         <div className="text-[11px] font-bold text-white flex items-center gap-1.5">
-                          <span>@GeminiSreymaraBot</span>
+                          <span>@Sreyquantumbot</span>
                           <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-ping" />
                         </div>
                         <div className="text-[9.5px] text-sky-300 font-mono">Official Support & AdsGram Lead: @cs133344</div>

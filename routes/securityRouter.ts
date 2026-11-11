@@ -92,7 +92,7 @@ securityRouter.post("/api/auth/telegram/verify", (req, res) => {
     return res.status(400).json({ success: false, message: "Missing auth data or hash." });
   }
 
-  const botToken = process.env.TELEGRAM_BOT_TOKEN || "8923557971:AAEBxN2HpZ8lDUfyFfUeqFnf0Vdc-lHc338";
+  const botToken = process.env.TELEGRAM_BOT_TOKEN || "";
   const { hash, ...data } = auth_data;
 
   // 1. Create data-check-string
@@ -216,7 +216,7 @@ securityRouter.post("/api/security/restore-bot-dispatcher", (req, res) => {
     success: true,
     botEngineStatus: "ACTIVE_RESTORED",
     dispatcherStatus: "AUTOMATED_DISPATCH_RESTORED",
-    targetBot: "@gemini_sreymara_bot",
+    targetBot: process.env.TELEGRAM_BOT_USERNAME ? `@${process.env.TELEGRAM_BOT_USERNAME.replace(/^@/, '')}` : "@Sreyquantumbot",
     timestamp: new Date().toISOString()
   });
 });

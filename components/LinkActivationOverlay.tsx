@@ -334,7 +334,7 @@ export const LinkActivationOverlay: React.FC<LinkActivationOverlayProps> = ({
                 </span>
               </div>
               <div className="text-amber-400 font-semibold flex items-center gap-1.5">
-                <span>Bot: @gemini_sreymara_bot</span>
+                <span>Bot: @Sreyquantumbot</span>
                 <span className="text-stone-600">•</span>
                 <span className="text-emerald-400 font-bold">6X Publisher Bonus Active</span>
               </div>
