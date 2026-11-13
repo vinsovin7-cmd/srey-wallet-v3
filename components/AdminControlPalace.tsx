@@ -321,8 +321,8 @@ export const AdminControlPalace: React.FC<AdminControlPalaceProps> = ({
     rewardCallbackUrl: typeof window !== "undefined" ? `${window.location.origin}/api/adsgram/reward?userId=[userId]` : "https://ais-dev-yri2x2xif26llxnhpuguzk-152195627325.asia-east1.run.app/api/adsgram/reward?userId=[userId]",
     botId: "9065775599",
     botToken: "9065775599:AAGgjKRvtVDkugmx9rD1SaXIXtLVrmTHuDk",
-    blockId: "48822",
-    apiKey: "adsgram_key_live_prod_48822"
+    blockId: "59313",
+    apiKey: "adsgram_key_live_prod_59313"
   });
 
   // Live Telegram Bot Verification State
@@ -1855,7 +1855,7 @@ export const AdminControlPalace: React.FC<AdminControlPalaceProps> = ({
                   <button
                     onClick={() =>
                       copyToClipboard(
-                        `TON_AD_REVENUE_AGGREGATOR_ADDRESS=${tonContracts.aggregatorAddress}\nTON_AD_REVENUE_AGGREGATOR_SECRET=${tonContracts.aggregatorSecret}\nTON_DISTRIBUTION_CONTRACT_ADDRESS=${tonContracts.distributionAddress}\nTON_PAYOUT_DISTRIBUTION_SECRET=${tonContracts.distributionSecret}\nTON_USDT_JETTON_MASTER=${tonContracts.usdtJettonMaster}\nADSGRAM_BLOCK_ID=5824`,
+                        `TON_AD_REVENUE_AGGREGATOR_ADDRESS=${tonContracts.aggregatorAddress}\nTON_AD_REVENUE_AGGREGATOR_SECRET=${tonContracts.aggregatorSecret}\nTON_DISTRIBUTION_CONTRACT_ADDRESS=${tonContracts.distributionAddress}\nTON_PAYOUT_DISTRIBUTION_SECRET=${tonContracts.distributionSecret}\nTON_USDT_JETTON_MASTER=${tonContracts.usdtJettonMaster}\nADSGRAM_BLOCK_ID=59313`,
                         "Environment Variables (.env)"
                       )
                     }
@@ -1872,7 +1872,7 @@ TON_AD_REVENUE_AGGREGATOR_SECRET=${tonContracts.aggregatorSecret}
 TON_DISTRIBUTION_CONTRACT_ADDRESS=${tonContracts.distributionAddress}
 TON_PAYOUT_DISTRIBUTION_SECRET=${tonContracts.distributionSecret}
 TON_USDT_JETTON_MASTER=${tonContracts.usdtJettonMaster}
-ADSGRAM_BLOCK_ID=5824`}
+ADSGRAM_BLOCK_ID=59313`}
                 </pre>
               </div>
 

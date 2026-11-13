@@ -278,7 +278,7 @@ async function startServer() {
       success: true,
       payoutRecord: {
         id: `imp_${Date.now()}`,
-        blockId: blockId || '5824',
+        blockId: blockId || '59313',
         adType: adType || 'rewarded_video',
         grossAdRevenue: grossAdRevenue || 0.05,
         platformShare80: (grossAdRevenue || 0.05) * 0.8,
@@ -804,6 +804,73 @@ async function startServer() {
       }
     }
   }
+
+  // -------------------------------------------------------------------------
+  // AdsGram Rewarded Video Ad Completion Callback & User Balance Crediting
+  // Unit ID: 59313
+  // -------------------------------------------------------------------------
+  app.post(['/api/reward', '/api/adsgram/reward'], async (req, res) => {
+    const { userId, blockId, rewardAmount } = req.body || {};
+
+    if (!userId) {
+      return res.status(400).json({ error: "Invalid user ID" });
+    }
+
+    try {
+      const creditAmount = typeof rewardAmount === 'number' ? rewardAmount : 0.05;
+      const activeBlockId = blockId || '59313';
+      const txHash = generateRealTonTxHash();
+
+      // Compound into real-time ecosystem balances
+      blockchainState.totalPlatformBalanceUsdt = +(blockchainState.totalPlatformBalanceUsdt + creditAmount).toFixed(4);
+
+      const newTx = {
+        id: `tx_rew_${Date.now()}`,
+        txHash,
+        network: "TON",
+        token: "USDT",
+        amount: creditAmount,
+        usdEquivalent: creditAmount,
+        streamType: "adsgram_reward",
+        streamTitle: `AdsGram Rewarded Video (Unit #${activeBlockId})`,
+        source: `AdsGram Unit #${activeBlockId}`,
+        destination: blockchainState.walletAddress,
+        timestamp: new Date().toISOString(),
+        confirmed: true,
+        explorerUrl: `https://tonviewer.com/${blockchainState.walletAddress}`
+      };
+
+      blockchainState.transactions.unshift(newTx);
+      if (blockchainState.transactions.length > 50) {
+        blockchainState.transactions.pop();
+      }
+
+      // Broadcast live increment to connected frontends
+      broadcastToClients("BALANCE_INCREMENT", {
+        newBalanceUsdt: blockchainState.totalPlatformBalanceUsdt,
+        newTonBalance: blockchainState.totalTonBalance,
+        streamTotals: blockchainState.streamTotals,
+        transaction: newTx,
+        usdValue: creditAmount,
+        streamType: newTx.streamTitle
+      });
+
+      console.log(`[AdsGram Reward] User ${userId} successfully credited +${creditAmount} USDT for Ad Unit #${activeBlockId}`);
+
+      return res.json({
+        success: true,
+        message: "Balance updated successfully",
+        userId,
+        rewardAmount: creditAmount,
+        blockId: activeBlockId,
+        txHash,
+        updatedBalanceUsdt: blockchainState.totalPlatformBalanceUsdt
+      });
+    } catch (error) {
+      console.error("Error updating reward balance:", error);
+      return res.status(500).json({ error: "Internal server error" });
+    }
+  });
 
   // Background Polling Worker: Queries Toncenter API v2 JSON-RPC
   async function pollToncenterBlockchain() {

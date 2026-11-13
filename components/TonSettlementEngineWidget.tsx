@@ -437,7 +437,7 @@ export const TonSettlementEngineWidget: React.FC<TonSettlementEngineWidgetProps>
                   className="w-full bg-stone-900 border border-stone-700 rounded-lg px-2.5 py-2 text-xs font-mono text-stone-200 focus:outline-none focus:border-amber-400 cursor-pointer"
                 >
                   <option value="Mini Cinema & Web3 Yield Hub">Mini Cinema & Web3 Yield Hub</option>
-                  <option value="AdsGram Unit 48822 Ad Network">AdsGram Unit 48822 Ad Network</option>
+                  <option value="AdsGram Unit 59313 Ad Network">AdsGram Unit 59313 Ad Network</option>
                   <option value="Transak / MoonPay Gateway Net Revenue">Transak / MoonPay Gateway Net Revenue</option>
                   <option value="Sreymara Jetton (80/20 Split + $1 Fixed Royalty)">Sreymara Jetton (80/20 Split + $1 Fixed Royalty)</option>
                 </select>

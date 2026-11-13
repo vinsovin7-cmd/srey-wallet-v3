@@ -2138,12 +2138,12 @@ export const PortableMiniCinemaEcosystem: React.FC<PortableMiniCinemaEcosystemPr
       rewardUsdt: 0.02
     },
     {
-      id: "notif_adsgram_48822",
+      id: "notif_adsgram_59313",
       source: "AdsGram Reward Ad Unit",
-      badge: "UNITID: 48822",
+      badge: "UNITID: 59313",
       color: "amber",
       region: "Block Type: Reward / TMA Web App",
-      text: "UnitID 48822 verified on partner.adsgram.ai with Reward URL callback.",
+      text: "UnitID 59313 verified on partner.adsgram.ai with Reward URL callback.",
       timestamp: "5 mins ago",
       rewardUsdt: 0.04
     }
@@ -2198,7 +2198,7 @@ export const PortableMiniCinemaEcosystem: React.FC<PortableMiniCinemaEcosystemPr
     // Register log quietly in notification board
     const newLog = {
       id: "ad_reward_" + Date.now(),
-      source: "AdsGram 48822 Micro-Payout",
+      source: "AdsGram 59313 Micro-Payout",
       badge: "REAL-TIME YIELD",
       color: "amber",
       region: "User Action: " + label,
@@ -2524,7 +2524,7 @@ export const PortableMiniCinemaEcosystem: React.FC<PortableMiniCinemaEcosystemPr
 
     setTimeout(() => {
       if (q.toLowerCase().includes("line 21") || q.toLowerCase().includes("health")) {
-        setAiResponse("Line 21 Regional Diagnostic: All 100 ecosystem modules, microservices, and AdsGram Ad Unit 48822 are operating at 100% health. Zero latency spikes.");
+        setAiResponse("Line 21 Regional Diagnostic: All 100 ecosystem modules, microservices, and AdsGram Ad Unit 59313 are operating at 100% health. Zero latency spikes.");
       } else if (q.toLowerCase().includes("movie") || q.toLowerCase().includes("cinema") || q.toLowerCase().includes("channel")) {
         setAiResponse("Recommendation: Al Jazeera English Live, NASA TV Earth From Space, and Channels TV Nigeria are all streaming in 1080p HD with direct mirror fallback.");
       } else if (q.toLowerCase().includes("youtube") || q.toLowerCase().includes("google")) {
@@ -2728,7 +2728,7 @@ export const PortableMiniCinemaEcosystem: React.FC<PortableMiniCinemaEcosystemPr
                 <span className="text-[8.5px] px-1 py-0.2 bg-amber-500/20 text-amber-300 rounded border border-amber-500/40">VIP</span>
               </span>
               <span className="px-1.5 py-0.2 bg-red-900/80 text-red-200 border border-red-600/70 rounded text-[9px] font-mono font-black shrink-0 hidden sm:inline">
-                48822 ACTIVE
+                59313 ACTIVE
               </span>
 
               {/* Force-Activate Seasonal Merlin 1-Tap Shortcut */}
@@ -2820,8 +2820,8 @@ export const PortableMiniCinemaEcosystem: React.FC<PortableMiniCinemaEcosystemPr
                   <span className="text-emerald-400 font-bold">LINE 21: 100%</span>
                 </div>
                 <div className="flex items-center gap-1">
-                  <span className="w-2 h-2 rounded-full bg-amber-400 led-blink-amber" title="AdsGram Unit 48822"></span>
-                  <span className="text-amber-300 font-bold">48822</span>
+                  <span className="w-2 h-2 rounded-full bg-amber-400 led-blink-amber" title="AdsGram Unit 59313"></span>
+                  <span className="text-amber-300 font-bold">59313</span>
                 </div>
                 <div className="flex items-center gap-1">
                   <span className="w-2 h-2 rounded-full bg-cyan-400 led-blink-cyan" title="Telegram @cs133344"></span>
@@ -2962,7 +2962,7 @@ export const PortableMiniCinemaEcosystem: React.FC<PortableMiniCinemaEcosystemPr
                   ★ [ECOSYSTEM INTELLIGENCE] LINE 21 REGION ASIA-EAST1: 100% HEALTHY & FUNCTIONING NORMAL
                 </span>
                 <span className="text-cyan-300">
-                  ⚡ [ADSGRAM S2S CALLBACK] UNITID 48822 REWARD URL VERIFIED • REAL-TIME MICRO-USDT ACTIVE
+                  ⚡ [ADSGRAM S2S CALLBACK] UNITID 59313 REWARD URL VERIFIED • REAL-TIME MICRO-USDT ACTIVE
                 </span>
                 <span className="text-emerald-400">
                   🛡️ [TELEGRAM DISPATCH] @CS133344 & @Sreyquantumbot OPERATING 100% CLEAN

@@ -209,7 +209,7 @@ export const AdsGram15sAdVoucherClaimModal: React.FC<AdsGram15sAdVoucherClaimMod
         )}
 
         <div className="text-center text-[10px] text-stone-500 font-mono">
-          AdsGram Rewarded SDK v2.4 • Block ID: 5824 • Verified Ad Impression
+          AdsGram Rewarded SDK v2.4 • Block ID: 59313 • Verified Ad Impression
         </div>
       </div>
     </div>
